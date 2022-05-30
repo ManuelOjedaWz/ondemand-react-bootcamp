@@ -1,7 +1,6 @@
 import React from 'react'
 import { Route, Routes } from 'react-router'
 import Default from './layouts/Default'
-// import { useFeaturedBanners } from './utils/hooks/useFeaturedBanners'
 import { BannersProvider } from './providers/BannersProvider'
 import Home from './views/Home'
 import Categories from './views/Categories'

@@ -1,5 +1,6 @@
 /* eslint-disable react/prop-types */
 import React from 'react'
+import Footer from '../components/Footer'
 import Header from '../components/Header'
 
 export default function Default ({ children }) {
@@ -7,6 +8,7 @@ export default function Default ({ children }) {
     <main>
       <Header />
       { children }
+      <Footer />
     </main>
   )
 }

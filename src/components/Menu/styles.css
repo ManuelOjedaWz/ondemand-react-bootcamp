@@ -1,0 +1,37 @@
+.menu {
+  display: grid;
+  margin-bottom: 1rem;
+}
+
+.menu > .menu--list {
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  width: 100%;
+}
+
+.menu > .menu--list > li > a {
+  padding: 0.5rem 1rem;
+  display: block;
+  transition: all ease .2s;
+  text-align: center;
+}
+
+.menu > .menu--list > li > a:hover {
+  font-weight: bold;
+  background-color: lightgray;
+}
+
+@media (min-width: 992px) {
+  .menu > .menu--list {
+    display: block;
+    margin: 0 auto;
+    width: auto;
+  }
+
+  .menu > .menu--list > li {
+    float: left;
+  }
+}

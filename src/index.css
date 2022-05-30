@@ -33,5 +33,7 @@ code {
 @media (min-width: 1200px) {
   body {
     padding: 1rem 3.5rem;
+    max-width: 1200px;
+    margin: 0 auto;
   }
 }

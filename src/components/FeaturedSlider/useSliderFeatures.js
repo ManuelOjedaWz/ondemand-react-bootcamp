@@ -1,4 +1,4 @@
-import { useEffect, useRef } from 'react'
+import { useRef } from 'react'
 
 export function useSliderFeatures ({ data, isLoading, index, setIndex }) {
   const timeoutRef = useRef(null)
@@ -25,17 +25,17 @@ export function useSliderFeatures ({ data, isLoading, index, setIndex }) {
     setIndex((prevIndex) => prevIndex + 1)
   }
 
-  useEffect(() => {
-    resetTimeout()
-    if (!isLoading && Object.keys(data).length !== 0) {
-      timeoutRef.current = setInterval(() => {
-        nextSlider()
-      }, 5000)
-    }
-    return () => {
-      resetTimeout()
-    }
-  }, [isLoading, data, index])
+  // useEffect(() => {
+  //   resetTimeout()
+  //   if (!isLoading && Object.keys(data).length !== 0) {
+  //     timeoutRef.current = setInterval(() => {
+  //       nextSlider()
+  //     }, 5000)
+  //   }
+  //   return () => {
+  //     resetTimeout()
+  //   }
+  // }, [isLoading, data, index])
 
   return {
     prevSlider,

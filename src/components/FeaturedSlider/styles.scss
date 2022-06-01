@@ -1,12 +1,12 @@
 .home--slider {
-  display: grid;
-  grid-template-columns: 10% 1fr 10%;
   align-items: center;
-  gap: 1rem;
+  position: relative;
   margin-bottom: 2rem;
 
   .home--slider--container {
     transition: all ease 200s;
+    position: relative;
+
     .home--slider--container-image {
       max-width: 100%;
       height: auto;
@@ -15,12 +15,20 @@
     }
 
     p {
-      text-align: center;
       font-weight: bold;
+      position: absolute;
+      bottom: 0%;
+      width: 100%;
+      margin: 0;
+      padding: 30px;
+      background-color: rgba(lightgray, 0.8);
+      max-width: calc(100% - 60px);
     }
   }
 
-  button {
+  .home--slider-button {
+    position: absolute;
+    top: 40%;
     border: none;
     max-height: 10rem;
     background-color: rgba(#a57b45, 0.6);
@@ -34,5 +42,9 @@
       cursor: pointer;
       background-color: rgba(#a57b45, 0.9);
     }
+  }
+
+  .home--slider-nextButton {
+    right: 0;
   }
 }

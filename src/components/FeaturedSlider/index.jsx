@@ -12,28 +12,30 @@ export default function FeaturedSlider () {
 
   return (
     <div className='home--slider'>
+      <div>
+        { isLoading && (<p>Loading ...</p>) }
+        {
+          data && data.results && (
+            data.results.map((banner, bannerIndex) => {
+              if (bannerIndex === index) {
+                return (
+                  <Banner banner={banner} key={banner.id} />
+                )
+              }
+
+              return null
+            })
+          )
+        }
+      </div>
       <SliderButton
         onClickFunction={prevSlider}
-        buttonClassName='home--slider-prevButton'
+        buttonClassName='home--slider-button home--slider-prevButton'
         iClassName='fa-solid fa-angles-left'
       />
-      { isLoading && (<p>Loading ...</p>) }
-      {
-        data && data.results && (
-          data.results.map((banner, bannerIndex) => {
-            if (bannerIndex === index) {
-              return (
-                <Banner banner={banner} key={banner.id} />
-              )
-            }
-
-            return null
-          })
-        )
-      }
       <SliderButton
         onClickFunction={nextSlider}
-        buttonClassName='home--slider-nextButton'
+        buttonClassName='home--slider-nextButton home--slider-button'
         iClassName='fa-solid fa-angles-right'
       />
     </div>

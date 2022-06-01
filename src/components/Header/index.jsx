@@ -1,23 +1,17 @@
 import React from 'react'
-import Menu from '../Menu'
 import Logo from '../../assets/logo.png'
-import './styles.css'
-import { Link } from 'react-router-dom'
+import './styles.scss'
 
 export default function Header () {
   return (
     <section>
       <header className='header'>
         <section className="header--logo">
-          <Link to='/'>
-            <img src={Logo} alt="Logo" />
-          </Link>
+          <img src={Logo} alt="Logo" />
         </section>
         <section className="header--title">
           <h1 className='header-title'>
-            <Link to='/'>
-              E-Commerce
-            </Link>
+            E-Commerce
           </h1>
         </section>
         <section className="header--shopping-search">
@@ -25,7 +19,6 @@ export default function Header () {
           <i className="fa-solid fa-cart-shopping"></i>
         </section>
       </header>
-      <Menu />
     </section>
   )
 }

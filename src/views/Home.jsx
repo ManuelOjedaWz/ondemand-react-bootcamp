@@ -3,12 +3,13 @@ import CategoriesGrid from '../components/CategoriesGrid'
 import FeaturedProducts from '../components/FeaturedProducts'
 import FeaturedSlider from '../components/FeaturedSlider'
 
-export default function Home () {
+// eslint-disable-next-line react/prop-types
+export default function Home ({ onHandleLinkPage }) {
   return (
     <section className='Home'>
       <FeaturedSlider />
       <CategoriesGrid />
-      <FeaturedProducts />
+      <FeaturedProducts onHandleLinkPage={onHandleLinkPage} />
     </section>
   )
 }

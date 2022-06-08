@@ -2,12 +2,13 @@ import React from 'react'
 import Logo from '../../assets/logo.png'
 import './styles.scss'
 
-export default function Header () {
+// eslint-disable-next-line react/prop-types
+export default function Header ({ onHandleLinkPage }) {
   return (
     <section>
       <header className='header'>
         <section className="header--logo">
-          <img src={Logo} alt="Logo" />
+          <img src={Logo} alt="Logo" onClick={() => onHandleLinkPage()} />
         </section>
         <section className="header--title">
           <h1 className='header-title'>

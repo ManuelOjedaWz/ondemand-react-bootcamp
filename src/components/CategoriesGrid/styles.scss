@@ -1,0 +1,35 @@
+.featured-categories {
+  margin-bottom: 4rem;
+  h3 {
+    font-size: 2rem;
+    text-align: center;
+  }
+
+  .featured-categories--grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 1rem;
+
+    img {
+      max-width: 100%;
+      display: block;
+      margin: 0 auto;
+    }
+
+    p {
+      text-align: center;
+    }
+
+    @media (min-width: 568px) {
+      grid-template-columns: 1fr 1fr;
+    }
+
+    @media (min-width: 768px) {
+      grid-template-columns: 1fr 1fr 1fr;
+    }
+
+    @media (min-width: 992px) {
+      grid-template-columns: repeat(5, 1fr);
+    }
+  }
+}

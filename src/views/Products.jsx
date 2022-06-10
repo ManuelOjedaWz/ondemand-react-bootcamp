@@ -6,6 +6,8 @@ import ProductCategories from '../mocks/en-us/product-categories.json'
 import ProductsJson from '../mocks/en-us/products.json'
 import '../styles/Products.scss'
 import ProductItem from '../components/FeaturedProducts/ProductItem'
+import ProductsPagination from '../components/ProductsPagination'
+import Spinner from '../components/Spinner'
 
 export default function Products ({ onHandleLinkPage }) {
   const [isLoading, setIsLoading] = useState(true)
@@ -70,22 +72,28 @@ export default function Products ({ onHandleLinkPage }) {
         <h4>
           Products found: {filteredProducts.length}
         </h4>
-        <div className="products-layout-products-grid">
+
           {
             isLoading
-              ? <h1>Loading</h1>
-              : filteredProducts.map((product, index) => {
-                return (
-                  <ProductItem product={product} key={index} />
+              ? <Spinner />
+              : (
+                <div className="products-layout-products-grid">
+                  {
+                  filteredProducts.map((product, index) => {
+                    return (
+                      <ProductItem product={product} key={index} />
+                    )
+                  })}
+                </div>
                 )
-              })
           }
-        </div>
         {
           filteredProducts.length === 0 && !isLoading && (
             <h1>Products not found</h1>
           )
         }
+
+        <ProductsPagination products={ProductsJson} />
       </div>
     </section>
   )

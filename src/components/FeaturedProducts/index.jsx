@@ -1,9 +1,9 @@
 import React from 'react'
+import PropTypes from 'prop-types'
 import Products from '../../mocks/en-us/featured-products.json'
 import ProductItem from './ProductItem'
 import './styles.scss'
 
-// eslint-disable-next-line react/prop-types
 export default function FeaturedProducts ({ onHandleLinkPage }) {
   function getRandomProduct () {
     return Products.results.sort(() => Math.random() - Math.random()).slice(0, 5)
@@ -28,4 +28,8 @@ export default function FeaturedProducts ({ onHandleLinkPage }) {
       </div>
     </section>
   )
+}
+
+FeaturedProducts.propTypes = {
+  onHandleLinkPage: PropTypes.func
 }

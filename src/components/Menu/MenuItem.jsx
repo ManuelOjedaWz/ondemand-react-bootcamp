@@ -1,5 +1,5 @@
-/* eslint-disable react/prop-types */
 import React from 'react'
+import PropTypes from 'prop-types'
 import { Link } from 'react-router-dom'
 
 export default function MenuItem ({ url, text }) {
@@ -8,4 +8,9 @@ export default function MenuItem ({ url, text }) {
       <Link to={url}>{text}</Link>
     </li>
   )
+}
+
+MenuItem.propTypes = {
+  url: PropTypes.string,
+  text: PropTypes.string
 }

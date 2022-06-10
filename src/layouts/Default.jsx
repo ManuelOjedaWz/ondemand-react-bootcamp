@@ -1,5 +1,5 @@
-/* eslint-disable react/prop-types */
 import React from 'react'
+import PropTypes from 'prop-types'
 import Footer from '../components/Footer'
 import Header from '../components/Header'
 
@@ -11,4 +11,9 @@ export default function Default ({ onHandleLinkPage, children }) {
       <Footer />
     </main>
   )
+}
+
+Default.propTypes = {
+  onHandleLinkPage: PropTypes.func,
+  children: PropTypes.array
 }

@@ -1,6 +1,6 @@
 import React from 'react'
+import PropTypes from 'prop-types'
 
-// eslint-disable-next-line react/prop-types
 export default function Products ({ onHandleLinkPage }) {
   return (
     <section className='products'>
@@ -8,4 +8,8 @@ export default function Products ({ onHandleLinkPage }) {
       <button onClick={() => onHandleLinkPage('home')}>Return to home</button>
     </section>
   )
+}
+
+Products.propTypes = {
+  onHandleLinkPage: PropTypes.func
 }

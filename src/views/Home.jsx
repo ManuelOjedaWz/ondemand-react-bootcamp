@@ -1,9 +1,9 @@
 import React from 'react'
+import PropTypes from 'prop-types'
 import CategoriesGrid from '../components/CategoriesGrid'
 import FeaturedProducts from '../components/FeaturedProducts'
 import FeaturedSlider from '../components/FeaturedSlider'
 
-// eslint-disable-next-line react/prop-types
 export default function Home ({ onHandleLinkPage }) {
   return (
     <section className='Home'>
@@ -12,4 +12,8 @@ export default function Home ({ onHandleLinkPage }) {
       <FeaturedProducts onHandleLinkPage={onHandleLinkPage} />
     </section>
   )
+}
+
+Home.propTypes = {
+  onHandleLinkPage: PropTypes.func
 }

@@ -1,5 +1,5 @@
-/* eslint-disable react/prop-types */
 import React from 'react'
+import PropTypes from 'prop-types'
 
 export default function SliderButton ({ onClickFunction, buttonClassName, iClassName }) {
   return (
@@ -7,4 +7,10 @@ export default function SliderButton ({ onClickFunction, buttonClassName, iClass
       <i className={iClassName}></i>
     </button>
   )
+}
+
+SliderButton.propTypes = {
+  onClickFunction: PropTypes.func,
+  buttonClassName: PropTypes.string,
+  iClassName: PropTypes.string
 }

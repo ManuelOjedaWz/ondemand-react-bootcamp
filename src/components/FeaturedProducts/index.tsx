@@ -5,9 +5,10 @@ import Product from '../../interfaces/Product'
 import Spinner from '../Spinner'
 import ProductItem from './ProductItem'
 import './styles.scss'
+import { useSelector } from 'react-redux'
 
 export default function FeaturedProducts () {
-  const { data, isLoading } = useFeaturedProducts()
+  const { data, isLoading } = useSelector((state: any) => state.featuredProducts)
   const { results }: { results: Array<Product> } = data
 
   if (isLoading) {
@@ -21,7 +22,7 @@ export default function FeaturedProducts () {
       <h3 className='title'>Featured Products</h3>
 
       <div className="featured-products--grid">
-        { data.results.map((product: Product) => {
+        { results.map((product: Product) => {
           return (
             <ProductItem key={product.id} product={product} />
           )

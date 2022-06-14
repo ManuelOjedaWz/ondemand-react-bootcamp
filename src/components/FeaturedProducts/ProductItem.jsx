@@ -20,7 +20,9 @@ export default function ProductItem ({ product }) {
         <span>Price:</span> ${price} USD
       </p>
       <Link to={`/product/${product.id}`}>
+        <p>
         Details
+        </p>
       </Link>
       <button>Add to cart</button>
     </div>

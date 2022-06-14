@@ -1,4 +1,5 @@
 import React, { useContext, useState } from 'react'
+import { useSelector } from 'react-redux'
 import { BannersContext } from '../../providers/BannersProvider'
 import Spinner from '../Spinner'
 import Banner from './Banner'
@@ -7,7 +8,7 @@ import './styles.scss'
 import { useSliderFeatures } from './useSliderFeatures'
 
 export default function FeaturedSlider () {
-  const { data, isLoading } = useContext(BannersContext)
+  const { data, isLoading } = useSelector((state) => state.banners)
   const [index, setIndex] = useState(0)
   const { prevSlider, nextSlider } = useSliderFeatures({ data, isLoading, index, setIndex })
 

@@ -6,20 +6,20 @@ import ProductItem from '../components/FeaturedProducts/ProductItem'
 import ProductsPagination from '../components/ProductsPagination'
 import Spinner from '../components/Spinner'
 import { Link, useSearchParams } from 'react-router-dom'
-import { useFeaturedCategories } from '../utils/hooks/useFeaturedCategories'
 import { useProducts } from '../utils/hooks/useProducts'
+import { useSelector } from 'react-redux'
 
 export default function Products () {
   const [searchParams] = useSearchParams()
   const [isLoading, setIsLoading] = useState(true)
   const [filters, setFilters] = useState<Array<string>>([])
   const { products, getProducts } = useProducts()
-  const { data: fetchedProducts, isLoading: isLoadingProducts } = products
+  // const { data: fetchedProducts, isLoading: isLoadingProducts } = products
   const [filteredProducts, setFilteredProducts] = useState(ProductsJson.results)
   const {
     data: categories,
     isLoading: isLoadingCategories
-  } = useFeaturedCategories()
+  } = useSelector((state: any) => state.categories)
 
   const handleCheckInput = (id: string|null, value: boolean = true) => {
     const categoryToBeHandled: any = document.getElementById(`category-${id}`)
@@ -55,12 +55,12 @@ export default function Products () {
 
   useEffect(() => {
     const newProducts = filters.length === 0
-      ? ProductsJson.results
-      : ProductsJson.results.filter(
-        p => filters.includes(p.data.category.id)
+      ? products.data.results
+      : products.data.results.filter(
+        (p: any) => filters.includes(p.data.category.id)
       )
     setFilteredProducts(newProducts)
-  }, [filters, ProductsJson.results])
+  }, [filters, products.data.results])
 
   useEffect(() => {
     resetLoading()
@@ -91,16 +91,16 @@ export default function Products () {
         </Link>
 
         <h4>
-          Products found: {fetchedProducts.total_results_size}
+          Products found: {products.data.total_results_size}
         </h4>
 
           {
-            isLoadingProducts
+            products.isLoading
               ? <Spinner />
               : (
                 <div className="products-layout-products-grid">
                   {
-                  fetchedProducts.results.map((product: any, index: any) => {
+                  products.data.results.map((product: any, index: any) => {
                     return (
                       <ProductItem product={product} key={index} />
                     )
@@ -115,8 +115,8 @@ export default function Products () {
         }
 
         {
-          !isLoadingProducts && (
-            <ProductsPagination products={fetchedProducts} onHandleProductFetch={handleProductFetch} />
+          !products.isLoading && (
+            <ProductsPagination products={products.data} onHandleProductFetch={handleProductFetch} />
           )
         }
       </div>

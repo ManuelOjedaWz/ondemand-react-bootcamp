@@ -1,12 +1,19 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
-import Products from '../../mocks/en-us/featured-products.json'
+import { useFeaturedProducts } from '../../utils/hooks/useFeaturedProducts'
+import Product from '../../interfaces/Product'
+import Spinner from '../Spinner'
 import ProductItem from './ProductItem'
 import './styles.scss'
 
 export default function FeaturedProducts () {
-  function getRandomProduct () {
-    return Products.results.sort(() => Math.random() - Math.random()).slice(0, 5)
+  const { data, isLoading } = useFeaturedProducts()
+  const { results }: { results: Array<Product> } = data
+
+  if (isLoading) {
+    return (
+      <Spinner />
+    )
   }
 
   return (
@@ -14,7 +21,7 @@ export default function FeaturedProducts () {
       <h3 className='title'>Featured Products</h3>
 
       <div className="featured-products--grid">
-        { getRandomProduct().map((product) => {
+        { data.results.map((product: Product) => {
           return (
             <ProductItem key={product.id} product={product} />
           )

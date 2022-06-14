@@ -1,5 +1,6 @@
 import React from 'react'
 import PropTypes from 'prop-types'
+import { Link } from 'react-router-dom'
 
 export default function ProductItem ({ product }) {
   const {
@@ -18,6 +19,10 @@ export default function ProductItem ({ product }) {
       <p>
         <span>Price:</span> ${price} USD
       </p>
+      <Link to={`/product/${product.id}`}>
+        Details
+      </Link>
+      <button>Add to cart</button>
     </div>
   )
 }

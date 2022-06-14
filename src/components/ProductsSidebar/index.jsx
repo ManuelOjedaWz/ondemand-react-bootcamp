@@ -6,7 +6,7 @@ const isActive = (filters, id) => {
     return 'filterIsActive'
   }
 }
-export default function ProductsSidebar ({ categories = [], onHandleFilter, filters = [] }) {
+export default function ProductsSidebar ({ categories = [], onHandleFilter, onHandleClearFilter, filters = [] }) {
   return (
     <div className='products-layout--sidebar'>
       <h3>Filters:</h3>
@@ -17,18 +17,21 @@ export default function ProductsSidebar ({ categories = [], onHandleFilter, filt
               key={category?.id}
               className={isActive(filters, category.id)}
             >
-              <input type="checkbox" value={category.id} onClick={onHandleFilter} />
+              <input type="checkbox" value={category.id} onClick={onHandleFilter} id={`category-${category.id}`} />
               { category?.data.name }
             </div>
           )
         })
       }
+
+      <button onClick={() => onHandleClearFilter()}>Clear filters</button>
     </div>
   )
 }
 
 ProductsSidebar.propTypes = {
-  categories: array.isRequired,
-  onHandleFilter: func.isRequired,
+  categories: array,
+  onHandleFilter: func,
+  onHandleClearFilter: func,
   filters: array
 }

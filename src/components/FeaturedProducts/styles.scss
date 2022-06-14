@@ -12,6 +12,12 @@
     gap: 2rem;
     margin-bottom: 1.2rem;
 
+    .product-item {
+      span {
+        font-weight: bold;
+      }
+    }
+
     img {
       display: block;
       max-width: 100%;

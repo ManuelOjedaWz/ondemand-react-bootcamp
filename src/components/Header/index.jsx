@@ -1,8 +1,8 @@
 import React from 'react'
+import PropTypes from 'prop-types'
 import Logo from '../../assets/logo.png'
 import './styles.scss'
 
-// eslint-disable-next-line react/prop-types
 export default function Header ({ onHandleLinkPage }) {
   return (
     <section>
@@ -22,4 +22,8 @@ export default function Header ({ onHandleLinkPage }) {
       </header>
     </section>
   )
+}
+
+Header.propTypes = {
+  onHandleLinkPage: PropTypes.func
 }

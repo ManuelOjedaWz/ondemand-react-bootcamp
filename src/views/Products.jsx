@@ -1,5 +1,5 @@
 /* eslint-disable no-unused-vars */
-import React, { useState, useEffect } from 'react'
+import React, { useState, useEffect, useCallback } from 'react'
 import PropTypes from 'prop-types'
 import ProductsSidebar from '../components/ProductsSidebar'
 import ProductCategories from '../mocks/en-us/product-categories.json'
@@ -14,43 +14,29 @@ export default function Products ({ onHandleLinkPage }) {
   const [filters, setFilters] = useState([])
   const [filteredProducts, setFilteredProducts] = useState(ProductsJson.results)
 
-  const isInFilters = (value) => {
-    return filters.indexOf(value) !== -1
-  }
-
-  const filterProducts = () => {
-    const products = ProductsJson.results.filter((fProduct) => {
-      return filters.includes(fProduct.data.category.id)
-    })
-    setFilteredProducts(products)
-  }
-
-  const resetLoading = () => {
+  const resetLoading = useCallback(() => {
     setTimeout(() => {
       setIsLoading(false)
     }, 2000)
-  }
+  }, [setIsLoading])
 
   const handleFilters = (e) => {
     const { checked, value } = e.target
     setIsLoading(true)
-
-    if (checked) {
-      filters.push(value)
-      setFilters(filters)
-    } else if (isInFilters(value)) {
-      filters.splice(filters.indexOf(value), 1)
-      setFilters(filters)
-    }
-
+    const newFilters = checked
+      ? [...filters, value]
+      : filters.filter(i => i !== value)
+    setFilters(newFilters)
     resetLoading()
-
-    if (filters.length === 0) {
-      setFilteredProducts(ProductsJson.results)
-      return null
-    }
-    filterProducts()
   }
+  useEffect(() => {
+    const newProducts = filters.length === 0
+      ? ProductsJson.results
+      : ProductsJson.results.filter(
+        p => filters.includes(p.data.category.id)
+      )
+    setFilteredProducts(newProducts)
+  }, [filters, ProductsJson.results])
 
   useEffect(() => {
     resetLoading()

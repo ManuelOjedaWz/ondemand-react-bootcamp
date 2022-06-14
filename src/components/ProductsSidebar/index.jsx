@@ -1,13 +1,12 @@
 import { array, func } from 'prop-types'
 import React from 'react'
 
-export default function ProductsSidebar ({ categories = [], onHandleFilter, filters = [] }) {
-  const isActive = (id) => {
-    if (filters.filter((f) => f === id).length > 0) {
-      return 'filterIsActive'
-    }
+const isActive = (filters, id) => {
+  if (filters.filter((f) => f === id).length > 0) {
+    return 'filterIsActive'
   }
-
+}
+export default function ProductsSidebar ({ categories = [], onHandleFilter, filters = [] }) {
   return (
     <div className='products-layout--sidebar'>
       <h3>Filters:</h3>
@@ -16,7 +15,7 @@ export default function ProductsSidebar ({ categories = [], onHandleFilter, filt
           return (
             <div
               key={category?.id}
-              className={isActive(category.id)}
+              className={isActive(filters, category.id)}
             >
               <input type="checkbox" value={category.id} onClick={onHandleFilter} />
               { category?.data.name }

@@ -1,6 +1,4 @@
-/* eslint-disable no-unused-vars */
 import React, { useState, useEffect, useCallback } from 'react'
-import PropTypes from 'prop-types'
 import ProductsSidebar from '../components/ProductsSidebar'
 import ProductCategories from '../mocks/en-us/product-categories.json'
 import ProductsJson from '../mocks/en-us/products.json'
@@ -8,10 +6,11 @@ import '../styles/Products.scss'
 import ProductItem from '../components/FeaturedProducts/ProductItem'
 import ProductsPagination from '../components/ProductsPagination'
 import Spinner from '../components/Spinner'
+import { Link } from 'react-router-dom'
 
-export default function Products ({ onHandleLinkPage }) {
+export default function Products () {
   const [isLoading, setIsLoading] = useState(true)
-  const [filters, setFilters] = useState([])
+  const [filters, setFilters] = useState<Array<string>>([])
   const [filteredProducts, setFilteredProducts] = useState(ProductsJson.results)
 
   const resetLoading = useCallback(() => {
@@ -20,8 +19,8 @@ export default function Products ({ onHandleLinkPage }) {
     }, 2000)
   }, [setIsLoading])
 
-  const handleFilters = (e) => {
-    const { checked, value } = e.target
+  const handleFilters = (e: Event) => {
+    const { checked, value } = (e.target as HTMLInputElement)
     setIsLoading(true)
     const newFilters = checked
       ? [...filters, value]
@@ -51,9 +50,11 @@ export default function Products ({ onHandleLinkPage }) {
       />
       <div className="products-layout--products">
         <h1>This is Product List Page</h1>
-        <button onClick={() => onHandleLinkPage('home')}>
-          Return to home
-        </button>
+        <Link to='/home'>
+          <button>
+            Return to home
+          </button>
+        </Link>
 
         <h4>
           Products found: {filteredProducts.length}
@@ -83,8 +84,4 @@ export default function Products ({ onHandleLinkPage }) {
       </div>
     </section>
   )
-}
-
-Products.propTypes = {
-  onHandleLinkPage: PropTypes.func
 }

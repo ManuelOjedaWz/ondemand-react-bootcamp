@@ -1,28 +1,20 @@
-import React, { useState } from 'react'
+import React from 'react'
+import { Route, Routes } from 'react-router'
 import Default from './layouts/Default'
 import { BannersProvider } from './providers/BannersProvider'
 import Home from './views/Home'
 import Products from './views/Products'
 
 function App () {
-  const [page, setPage] = useState('home')
-
-  const handlePage = (nextPage = 'home') => {
-    setPage(nextPage)
-  }
-
   return (
     <BannersProvider>
-      <Default onHandleLinkPage={handlePage}>
-        {
-          page === 'home' &&
-          (<Home onHandleLinkPage={handlePage} />)
-        }
-        {
-          page === 'products' &&
-          (<Products onHandleLinkPage={handlePage} />)
-        }
-      </Default>
+      <Routes>
+        <Route element={<Default />}>
+          <Route path='/' element={<Home />} />
+          <Route path='/home' element={<Home />} />
+          <Route path='/products' element={<Products />} />
+        </Route>
+      </Routes>
     </BannersProvider>
   )
 }

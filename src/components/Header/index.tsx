@@ -1,14 +1,16 @@
 import React from 'react'
-import PropTypes from 'prop-types'
+import { Link } from 'react-router-dom'
 import Logo from '../../assets/logo.png'
 import './styles.scss'
 
-export default function Header ({ onHandleLinkPage }) {
+export default function Header () {
   return (
     <section>
       <header className='header'>
         <section className="header--logo">
-          <img src={Logo} alt="Logo" onClick={() => onHandleLinkPage()} />
+          <Link to='/home'>
+            <img src={Logo} alt="Logo" />
+          </Link>
         </section>
         <section className="header--title">
           <h1 className='header-title'>
@@ -22,8 +24,4 @@ export default function Header ({ onHandleLinkPage }) {
       </header>
     </section>
   )
-}
-
-Header.propTypes = {
-  onHandleLinkPage: PropTypes.func
 }

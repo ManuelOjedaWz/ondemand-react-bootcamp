@@ -1,5 +1,5 @@
-/* eslint-disable react/prop-types */
 import React from 'react'
+import PropTypes from 'prop-types'
 
 export default function CategoryItem ({ category }) {
   return (
@@ -10,4 +10,8 @@ export default function CategoryItem ({ category }) {
       </p>
     </div>
   )
+}
+
+CategoryItem.propTypes = {
+  category: PropTypes.object
 }

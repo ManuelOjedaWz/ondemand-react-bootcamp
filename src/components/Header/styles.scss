@@ -2,6 +2,7 @@
   display: grid;
   grid-template-columns: 1fr 1fr;
   align-items: center;
+  margin: 1.3rem;
 
   .header--title {
     h1 {
@@ -16,6 +17,10 @@
       max-width: 200px;
       display: block;
       margin: 0 auto;
+
+      &:hover {
+        cursor: pointer;
+      }
     }
   }
 

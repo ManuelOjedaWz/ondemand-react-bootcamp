@@ -1,19 +1,27 @@
-/* eslint-disable react/prop-types */
 import React from 'react'
+import PropTypes from 'prop-types'
 
 export default function ProductItem ({ product }) {
+  const {
+    data: { mainimage, name, category, price }
+  } = product
+
   return (
-    <div>
-      <img src={product.data.mainimage.url} />
+    <div className='product-item'>
+      <img src={mainimage.url} />
       <p>
-        <b>Name:</b> {product.data.name}
+        <span>Name:</span> {name}
       </p>
       <p>
-        <b>Category:</b> {product.data.category.slug.toString().toUpperCase()}
+        <span>Category:</span> {category.slug.toString().toUpperCase()}
       </p>
       <p>
-        <b>Price:</b> ${product.data.price} USD
+        <span>Price:</span> ${price} USD
       </p>
     </div>
   )
+}
+
+ProductItem.propTypes = {
+  product: PropTypes.object
 }

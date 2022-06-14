@@ -1,9 +1,10 @@
 import React from 'react'
+import PropTypes from 'prop-types'
 import Products from '../../mocks/en-us/featured-products.json'
 import ProductItem from './ProductItem'
 import './styles.scss'
 
-export default function FeaturedProducts () {
+export default function FeaturedProducts ({ onHandleLinkPage }) {
   function getRandomProduct () {
     return Products.results.sort(() => Math.random() - Math.random()).slice(0, 5)
   }
@@ -19,6 +20,16 @@ export default function FeaturedProducts () {
           )
         }) }
       </div>
+
+      <div className="featured-products--button">
+        <button onClick={() => onHandleLinkPage('products')}>
+          View all products
+        </button>
+      </div>
     </section>
   )
+}
+
+FeaturedProducts.propTypes = {
+  onHandleLinkPage: PropTypes.func
 }

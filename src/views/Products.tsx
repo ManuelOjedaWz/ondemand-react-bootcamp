@@ -30,15 +30,32 @@ export default function Products () {
     filters.forEach((filter) => handleCheckInput(filter, false))
     setFilters([])
     navigate('/products')
-    window.location.reload()
+    navigate(0)
   }
 
   const handleFilters = (e: Event) => {
     const { checked, value } = (e.target as HTMLInputElement)
-    const newFilters = checked
-      ? [...filters, value]
-      : filters.filter(i => i !== value)
-    setFilters(newFilters)
+    let categoriesValue: string = ''
+    if (checked) {
+      categoriesValue = searchParams.get('category')
+        ? `${searchParams.get('category')}|${value}`
+        : value
+      navigate(`/products?category=${categoriesValue}`)
+      navigate(0)
+    } else {
+      if (searchParams.get('category') && (searchParams.get('category')?.split('|')as any).length >= 1) {
+        const categoriesFilters = searchParams.get('category')?.split('|').filter((category) => category !== value)
+        categoriesFilters?.forEach((category, index) => {
+          if (categoriesFilters.length === index + 1) {
+            categoriesValue += `${category}`
+          } else {
+            categoriesValue += `${category}|`
+          }
+        })
+        navigate(`/products?category=${categoriesValue}`)
+        navigate(0)
+      }
+    }
   }
 
   const handleProductFetch = (page: number) => {
@@ -48,8 +65,15 @@ export default function Products () {
   useEffect(() => {
     if (searchParams.get('category')) {
       const categoryId: string|null = searchParams.get('category')
-      handleCheckInput(categoryId)
-      setFilters([...filters, categoryId as string])
+      if (categoryId?.includes('|')) {
+        categoryId.split('|').forEach((category) => {
+          handleCheckInput(category)
+          setFilters([...filters, category as string])
+        })
+      } else {
+        handleCheckInput(categoryId)
+        setFilters([...filters, categoryId as string])
+      }
     }
   }, [categories])
 

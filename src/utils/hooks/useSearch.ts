@@ -17,7 +17,7 @@ export function useSearch () {
     isLoading: true
   }))
 
-  const getProducts = async () => {
+  const getProducts = async (page: number = 1) => {
     try {
       setSearch({
         data: {},
@@ -30,7 +30,7 @@ export function useSearch () {
           '[[at(document.type, "product")]]'
         )}&q=${encodeURIComponent(
           filter
-        )}&lang=en-us&pageSize=20`,
+        )}&lang=en-us&page=${page}&pageSize=20`,
         {
           signal: controller.signal
         }
@@ -56,5 +56,5 @@ export function useSearch () {
     }
   }, [apiRef, isApiMetadataLoading])
 
-  return search
+  return { search, getProducts }
 }

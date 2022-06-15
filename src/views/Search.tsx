@@ -9,7 +9,6 @@ import ProductsPagination from '../components/ProductsPagination'
 export default function Search () {
   const { search, getProducts } = useSearch()
   const { data, isLoading } = search
-  console.log(data, isLoading)
 
   const handleProductFetch = (page: number) => {
     getProducts(page)

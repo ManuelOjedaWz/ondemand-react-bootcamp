@@ -40,19 +40,19 @@ export default function Product () {
         <button>Return</button>
       </Link>
       <Gallery images={product?.data.images} />
-      <h1>{product?.data.name}</h1>
-      <h3>Price: ${product?.data.price} USD</h3>
-      <h3>SKU: {product?.data.sku}</h3>
-      <h3>Category: {product?.data.category.slug}</h3>
 
       <div className="product--body">
         <div className="product--description">
-          <p>
-            {product?.data.description[0].text}
-          </p>
+          <h1>{product?.data.name}</h1>
+          <h3>Price: ${product?.data.price} USD</h3>
+          <h3>SKU: {product?.data.sku}</h3>
+          <h3>Category: {product?.data.category.slug}</h3>
         </div>
 
         <div className="product--add-to-cart">
+          <p>
+            {product?.data.description[0].text}
+          </p>
           <h4>Specs:</h4>
           <ul>
             {

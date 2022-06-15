@@ -1,4 +1,5 @@
 import { useState, useEffect } from 'react'
+import { useSearchParams } from 'react-router-dom'
 import Featured from '../../interfaces/Featured'
 import { API_BASE_URL } from '../constants'
 import { useLatestAPI } from './useLatestAPI'
@@ -10,6 +11,7 @@ export function useProducts () {
   } = useLatestAPI()
 
   const [controller] = useState(new AbortController())
+  const [searchParams] = useSearchParams()
 
   const [products, setProducts] = useState<Featured>(() => ({
     data: {},
@@ -23,10 +25,17 @@ export function useProducts () {
         isLoading: true
       })
 
+      let URL: string = `${API_BASE_URL}/documents/search?ref=${apiRef}&q=${encodeURIComponent(
+        '[[at(document.type, "product")]]'
+      )}&lang=en-us&page=${page}&pageSize=12`
+
+      if (searchParams.get('category')) {
+        const categoryFilter = `[[at(my.product.category, "${searchParams.get('category')}")]]`
+        URL = `${API_BASE_URL}/documents/search?ref=${apiRef}&q=${encodeURIComponent(categoryFilter)}&lang=en-us&page=${page}&pageSize=12`
+      }
+
       const response = await fetch(
-        `${API_BASE_URL}/documents/search?ref=${apiRef}&q=${encodeURIComponent(
-          '[[at(document.type, "product")]]'
-        )}&lang=en-us&page=${page}&pageSize=12`,
+        URL,
         {
           signal: controller.signal
         }

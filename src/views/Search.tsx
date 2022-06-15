@@ -2,6 +2,7 @@ import React from 'react'
 import Spinner from '../components/Spinner'
 import { useSearch } from '../utils/hooks/useSearch'
 import ProductItem from '../components/FeaturedProducts/ProductItem'
+import NotFoundImage from '../assets/crying.jpeg'
 import '../styles/Search.scss'
 
 export default function Search () {
@@ -16,8 +17,9 @@ export default function Search () {
 
   if (data.total_results_size === 0) {
     return (
-      <section>
-        <h1>No results were found</h1>
+      <section className='search-not-found'>
+        <img src={NotFoundImage} alt="Not found" />
+        <h1>No results were found in the search.</h1>
       </section>
     )
   }

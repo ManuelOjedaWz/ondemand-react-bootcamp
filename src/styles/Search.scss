@@ -2,6 +2,7 @@
   display: grid;
   max-width: 100%;
   grid-template-columns: repeat(2, 1fr);
+  align-items: end;
   gap: 30px;
   margin-bottom: 30px;
 

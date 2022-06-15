@@ -19,12 +19,14 @@ export default function ProductItem ({ product }) {
       <p>
         <span>Price:</span> ${price} USD
       </p>
-      <Link to={`/product/${product.id}`}>
-        <p>
-        Details
-        </p>
-      </Link>
-      <button>Add to cart</button>
+      <div className="product-item--inner-grid">
+        <Link to={`/product/${product.id}`}>
+          <button>
+            Details
+          </button>
+        </Link>
+        <button>Add to cart</button>
+      </div>
     </div>
   )
 }

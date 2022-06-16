@@ -1,60 +1,24 @@
-import { useState, useEffect } from 'react'
 import { useSearchParams } from 'react-router-dom'
-import Featured from '../../interfaces/Featured'
 import { API_BASE_URL } from '../constants'
+import { useBaseAPI } from './useBaseAPI'
 import { useLatestAPI } from './useLatestAPI'
 
 export function useSearch () {
   const {
-    ref: apiRef,
-    isLoading: isApiMetadataLoading
+    ref: apiRef
   } = useLatestAPI()
 
-  const [controller] = useState(new AbortController())
   const [searchParams] = useSearchParams()
-  const [search, setSearch] = useState<Featured>(() => ({
-    data: {},
-    isLoading: true
-  }))
+  const page = searchParams.get('page') ?? 1
 
-  const getProducts = async (page: number = 1) => {
-    try {
-      setSearch({
-        data: {},
-        isLoading: true
-      })
+  const filter = `[[fulltext(document, "${searchParams.get('q')}")]]`
+  const URL: string = `${API_BASE_URL}/documents/search?ref=${apiRef}&q=${encodeURIComponent(
+      '[[at(document.type, "product")]]'
+    )}&q=${encodeURIComponent(
+      filter
+    )}&lang=en-us&page=${page}&pageSize=20`
 
-      const filter = `[[fulltext(document, "${searchParams.get('q')}")]]`
-      const response = await fetch(
-        `${API_BASE_URL}/documents/search?ref=${apiRef}&q=${encodeURIComponent(
-          '[[at(document.type, "product")]]'
-        )}&q=${encodeURIComponent(
-          filter
-        )}&lang=en-us&page=${page}&pageSize=20`,
-        {
-          signal: controller.signal
-        }
-      )
+  const { featured } = useBaseAPI(URL)
 
-      const data = await response.json()
-      setSearch({ data, isLoading: false })
-    } catch (error) {
-      setSearch({ data: {}, isLoading: false })
-      console.error(error)
-    }
-  }
-
-  useEffect(() => {
-    if (!apiRef || isApiMetadataLoading) {
-      return () => {}
-    }
-
-    getProducts()
-
-    return () => {
-      controller.abort()
-    }
-  }, [apiRef, isApiMetadataLoading])
-
-  return { search, getProducts }
+  return { featured }
 }

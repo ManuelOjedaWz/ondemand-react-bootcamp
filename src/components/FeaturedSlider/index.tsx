@@ -1,6 +1,8 @@
 import React, { useContext, useState } from 'react'
 import { useSelector } from 'react-redux'
+import IBanner from '../../interfaces/Banner'
 import { BannersContext } from '../../providers/BannersProvider'
+import { getBanners } from '../../store/bannersSlice'
 import Spinner from '../Spinner'
 import Banner from './Banner'
 import SliderButton from './SliderButton'
@@ -8,8 +10,8 @@ import './styles.scss'
 import { useSliderFeatures } from './useSliderFeatures'
 
 export default function FeaturedSlider () {
-  const { data, isLoading } = useSelector((state) => state.banners)
-  const [index, setIndex] = useState(0)
+  const { data, isLoading } = useSelector(getBanners)
+  const [index, setIndex] = useState<number>(0)
   const { prevSlider, nextSlider } = useSliderFeatures({ data, isLoading, index, setIndex })
 
   if (isLoading) {
@@ -24,7 +26,7 @@ export default function FeaturedSlider () {
         { isLoading && (<p>Loading ...</p>) }
         {
           data && data.results && (
-            data.results.map((banner, bannerIndex) => {
+            data.results.map((banner: IBanner, bannerIndex: number) => {
               if (bannerIndex === index) {
                 return (
                   <Banner banner={banner} key={banner.id} />

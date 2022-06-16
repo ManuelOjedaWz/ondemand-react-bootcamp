@@ -2,7 +2,11 @@ import React from 'react'
 import { Link } from 'react-router-dom'
 import Category from '../../interfaces/Category'
 
-export default function CategoryItem ({ category }: { category: Category }) {
+interface CategoryItemProps {
+  category: Category
+}
+
+export default function CategoryItem ({ category }: CategoryItemProps) {
   return (
     <Link to={`/products?category=${category.id}`}>
       <div>

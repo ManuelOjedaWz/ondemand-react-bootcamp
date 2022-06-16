@@ -16,19 +16,23 @@ export default function Gallery ({ images = [] }) {
   const [thumbSwiper, setThumbSwiper] = useState(null)
 
   return (
-    <>
-      <Swiper style={{ '--swiper-navigation-color': '#fff', '--swiper-pagination-color': '#fff' }} loop={true} spaceBetween={10} navigation={true} thumbs={{ swiper: thumbSwiper }} className="mySwiper2">
-        <SwiperSlide>
-          {
-            images.map((image, index) => (
-              <SwiperSlide key={index}>
-                <img src={image.image.url} />
-              </SwiperSlide>
-            ))
-          }
-        </SwiperSlide>
-      </Swiper>
-    </>
+    <Swiper
+      loop={true}
+      spaceBetween={10}
+      navigation={true}
+      thumbs={{ swiper: thumbSwiper }}
+      className="mySwiper2"
+    >
+      <SwiperSlide>
+        {
+          images.map((image, index) => (
+            <SwiperSlide key={index}>
+              <img src={image.image.url} />
+            </SwiperSlide>
+          ))
+        }
+      </SwiperSlide>
+    </Swiper>
   )
 }
 

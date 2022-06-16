@@ -17,39 +17,27 @@ import Product from './views/Product'
 import Search from './views/Search'
 
 function App () {
-  const { data: categories, isLoading: isLoadingCategories } = useFeaturedCategories()
-  const { data: banners, isLoading: isLoadingBanners } = useFeaturedBanners()
-  const { data: featuredProducts, isLoading: isLoadingFeaturedProducts } = useFeaturedProducts()
-  const { products } = useProducts()
+  const categories = useFeaturedCategories()
+  const banners = useFeaturedBanners()
+  const featuredProducts = useFeaturedProducts()
+  const { featured: products } = useProducts()
 
   const dispatch = useDispatch()
 
   useEffect(() => {
-    dispatch(setCategories({
-      data: categories,
-      isLoading: isLoadingCategories
-    }))
+    dispatch(setCategories(categories))
   }, [categories])
 
   useEffect(() => {
-    dispatch(setBanners({
-      data: banners,
-      isLoading: isLoadingBanners
-    }))
+    dispatch(setBanners(banners))
   }, [banners])
 
   useEffect(() => {
-    dispatch(setProducts({
-      data: products.data,
-      isLoading: products.isLoading
-    }))
+    dispatch(setProducts(products))
   }, [products])
 
   useEffect(() => {
-    dispatch(setFeaturedProducts({
-      data: featuredProducts,
-      isLoading: isLoadingFeaturedProducts
-    }))
+    dispatch(setFeaturedProducts(featuredProducts))
   }, [featuredProducts])
 
   return (

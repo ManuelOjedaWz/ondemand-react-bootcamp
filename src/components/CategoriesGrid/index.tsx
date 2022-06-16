@@ -1,13 +1,13 @@
 import React from 'react'
 import { useSelector } from 'react-redux'
 import Category from '../../interfaces/Category'
-import { useFeaturedCategories } from '../../utils/hooks/useFeaturedCategories'
+import { getCategories } from '../../store/categoriesSlice'
 import Spinner from '../Spinner'
 import CategoryItem from './CategoryItem'
 import './styles.scss'
 
 export default function CategoriesGrid () {
-  const { data, isLoading } = useSelector((state: any) => state.categories)
+  const { data, isLoading } = useSelector(getCategories)
   const { results }: { results: Array<Category> } = data
 
   if (isLoading) {

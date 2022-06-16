@@ -1,21 +1,28 @@
 import React, { useEffect, useState } from 'react'
 import PropTypes from 'prop-types'
 import './styles.scss'
+import { FeaturedData } from '../../interfaces/Featured'
 
-export default function ProductsPagination ({ products, onHandleProductFetch }) {
-  const [paginationButtons, setPaginationButtons] = useState([])
+interface ProductsPaginationProps {
+  products: FeaturedData;
+  onHandleProductFetch: Function
+}
+
+interface ButtonProp {
+  label: number
+}
+
+export default function ProductsPagination ({ products, onHandleProductFetch }: ProductsPaginationProps) {
+  const [paginationButtons, setPaginationButtons] = useState<Array<ButtonProp>>([])
 
   useEffect(() => {
-    const buttons = []
-    for (let index = 0; index < products.total_pages; index++) {
-      buttons.push(...paginationButtons, {
-        label: index + 1
-      })
-      setPaginationButtons(buttons)
-    }
+    const newButtons = Array
+      .from({ length: (products.total_pages as number) }, (_, i) => i + 1)
+      .map(label => ({ label }))
+    setPaginationButtons(newButtons)
   }, [products])
 
-  const getPage = (link) => {
+  const getPage = (link: string) => {
     if (!link) {
       return null
     }
@@ -29,7 +36,7 @@ export default function ProductsPagination ({ products, onHandleProductFetch }) 
     >
       <button
         disabled={!products.prev_page}
-        onClick={() => onHandleProductFetch(getPage(products.prev_page))}
+        onClick={() => onHandleProductFetch(getPage((products.prev_page as string)))}
       >
         Prev
       </button>
@@ -45,7 +52,7 @@ export default function ProductsPagination ({ products, onHandleProductFetch }) 
       }
       <button
         disabled={!products.next_page}
-        onClick={() => onHandleProductFetch(getPage(products.next_page))}
+        onClick={() => onHandleProductFetch(getPage((products.next_page as string)))}
       >
         Next
       </button>

@@ -1,7 +1,8 @@
 import { createSlice } from '@reduxjs/toolkit'
+import { RootState } from '.'
 
 const initialState = {
-  data: {},
+  data: {} as any,
   isLoading: true
 }
 
@@ -15,6 +16,8 @@ export const featuredProductsSlice = createSlice({
     }
   }
 })
+
+export const getFeaturedProducts = (state: RootState) => state.featuredProducts
 
 export const { setFeaturedProducts } = featuredProductsSlice.actions
 

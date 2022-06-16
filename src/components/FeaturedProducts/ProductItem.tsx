@@ -1,8 +1,13 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 import { Link } from 'react-router-dom'
+import Product from '../../interfaces/Product'
 
-export default function ProductItem ({ product }) {
+interface ProductItemProps {
+  product: Product
+}
+
+export default function ProductItem ({ product }: ProductItemProps) {
   const {
     data: { mainimage, name, category, price }
   } = product

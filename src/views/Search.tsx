@@ -3,15 +3,20 @@ import Spinner from '../components/Spinner'
 import { useSearch } from '../utils/hooks/useSearch'
 import ProductItem from '../components/FeaturedProducts/ProductItem'
 import NotFoundImage from '../assets/crying.jpeg'
-import '../styles/Search.scss'
 import ProductsPagination from '../components/ProductsPagination'
+import { useNavigate } from 'react-router'
+import '../styles/Search.scss'
 
 export default function Search () {
-  const { search, getProducts } = useSearch()
+  const navigate = useNavigate()
+  const { featured: search } = useSearch()
   const { data, isLoading } = search
 
   const handleProductFetch = (page: number) => {
-    getProducts(page)
+    const url = new URL(window.location.href)
+    url.searchParams.set('page', page.toString())
+    navigate(`${url.pathname}${url.search}`)
+    navigate(0)
   }
 
   if (isLoading) {
@@ -31,6 +36,7 @@ export default function Search () {
 
   return (
     <>
+      <h1>Search</h1>
       <section className='products-layout-products-grid'>
         {
           data.results.map((product: any, index: any) => {

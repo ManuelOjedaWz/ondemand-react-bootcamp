@@ -1,7 +1,8 @@
 import { createSlice } from '@reduxjs/toolkit'
+import { RootState } from '.'
 
 const initialState = {
-  data: {},
+  data: {} as any,
   isLoading: true
 }
 
@@ -15,6 +16,8 @@ export const categoriesSlice = createSlice({
     }
   }
 })
+
+export const getCategories = (state: RootState) => state.categories
 
 export const { setCategories } = categoriesSlice.actions
 

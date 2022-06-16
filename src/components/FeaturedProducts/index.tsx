@@ -6,9 +6,10 @@ import Spinner from '../Spinner'
 import ProductItem from './ProductItem'
 import './styles.scss'
 import { useSelector } from 'react-redux'
+import { getFeaturedProducts } from '../../store/featuredProductsSlice'
 
 export default function FeaturedProducts () {
-  const { data, isLoading } = useSelector((state: any) => state.featuredProducts)
+  const { data, isLoading } = useSelector(getFeaturedProducts)
   const { results }: { results: Array<Product> } = data
 
   if (isLoading) {

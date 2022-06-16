@@ -1,4 +1,5 @@
 import { createSlice } from '@reduxjs/toolkit'
+import { RootState } from '.'
 
 const initialState = {
   data: {},
@@ -15,6 +16,8 @@ export const productsSlice = createSlice({
     }
   }
 })
+
+export const getProducts = (state: RootState) => state.products
 
 export const { setProducts } = productsSlice.actions
 

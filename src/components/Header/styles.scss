@@ -34,12 +34,16 @@
     }
 
     .header--search-bar {
-      margin-right: 2rem;
       border-radius: 0.5rem;
       padding-left: 1rem;
       padding-right: 1rem;
       width: 8rem;
       height: 2rem;
+    }
+
+    button {
+      margin-right: 2rem;
+      padding: 0.6rem;
     }
   }
 

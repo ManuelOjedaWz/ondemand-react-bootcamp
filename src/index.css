@@ -13,10 +13,30 @@ a {
   text-decoration: none;
 }
 
+h1, h2, h3,h4, h5 {
+  margin-bottom: 0;
+}
+
 code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
 }
+
+.product-item span {
+  font-weight: bold;
+}
+
+.product-item button,
+.product-item a {
+  display: block;
+  width: 100%;
+}
+
+.product-item--inner-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+}
+
 
 @media (min-width: 768px) {
   body {

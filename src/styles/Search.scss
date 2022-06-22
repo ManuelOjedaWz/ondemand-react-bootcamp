@@ -1,0 +1,28 @@
+.products-layout-products-grid {
+  display: grid;
+  max-width: 100%;
+  grid-template-columns: repeat(2, 1fr);
+  align-items: end;
+  gap: 30px;
+  margin-bottom: 30px;
+
+  img {
+    max-width: 100%;
+  }
+
+  @media (min-width: 568px) {
+    grid-template-columns: repeat(3, 1fr);
+  }
+  @media (min-width: 992px) {
+    grid-template-columns: repeat(4, 1fr);
+  }
+}
+
+.search-not-found {
+  text-align: center;
+  img {
+    margin: 0 auto;
+    display: block;
+    max-width: 100%;
+  }
+}

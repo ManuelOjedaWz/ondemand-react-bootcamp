@@ -1,7 +1,13 @@
 import React from 'react'
 import PropTypes from 'prop-types'
+import { Link } from 'react-router-dom'
+import Product from '../../interfaces/Product'
 
-export default function ProductItem ({ product }) {
+interface ProductItemProps {
+  product: Product
+}
+
+export default function ProductItem ({ product }: ProductItemProps) {
   const {
     data: { mainimage, name, category, price }
   } = product
@@ -18,6 +24,14 @@ export default function ProductItem ({ product }) {
       <p>
         <span>Price:</span> ${price} USD
       </p>
+      <div className="product-item--inner-grid">
+        <Link to={`/product/${product.id}`}>
+          <button>
+            Details
+          </button>
+        </Link>
+        <button>Add to cart</button>
+      </div>
     </div>
   )
 }

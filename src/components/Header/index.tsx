@@ -1,11 +1,15 @@
 import React, { useState } from 'react'
+import { useSelector } from 'react-redux'
 import { Link, useNavigate } from 'react-router-dom'
 import Logo from '../../assets/logo.png'
+import { getCart } from '../../store/cartSlice'
 import { Input } from '../../styles/global'
 import { Button } from '../FeaturedProducts/styles'
+import { AmmountSpan } from './styles'
 import './styles.scss'
 
 export default function Header () {
+  const { products } = useSelector(getCart)
   const [search, setSearch] = useState<string>('')
   const ENTER: string = 'Enter'
   const navigate = useNavigate()
@@ -27,6 +31,11 @@ export default function Header () {
     navigate(0)
   }
 
+  const getTotalAmmount = (): number => {
+    const initialValue = 0
+    return products.reduce((prevValue, { ammount }) => prevValue + ammount, initialValue)
+  }
+
   return (
     <section>
       <header className='header'>
@@ -36,9 +45,11 @@ export default function Header () {
           </Link>
         </section>
         <section className="header--title">
-          <h1 className='header-title'>
-            E-Commerce
-          </h1>
+          <Link to='/'>
+            <h1 className='header-title'>
+              E-Commerce
+            </h1>
+          </Link>
         </section>
         <section className="header--shopping-search">
           <Input
@@ -50,9 +61,14 @@ export default function Header () {
           <Button onClick={handleSearch}>
             <i className="fas fa-search"></i>
           </Button>
-          <Link to='/cart'>
-            <i className="fa-solid fa-cart-shopping"></i>
-          </Link>
+          <div>
+            <Link to='/cart'>
+              <i className="fa-solid fa-cart-shopping"></i>
+            </Link>
+            <AmmountSpan>
+              { getTotalAmmount() }
+            </AmmountSpan>
+          </div>
         </section>
       </header>
     </section>

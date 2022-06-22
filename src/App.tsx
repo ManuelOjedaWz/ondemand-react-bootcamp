@@ -17,6 +17,7 @@ import Product from './views/Product'
 import Search from './views/Search'
 import Cart from './views/Cart'
 import Checkout from './views/Checkout'
+import NotFound from './views/NotFound'
 
 function App () {
   const categories = useFeaturedCategories()
@@ -53,6 +54,7 @@ function App () {
           <Route path='/search' element={<Search />} />
           <Route path='/cart' element={<Cart />} />
           <Route path='/checkout' element={<Checkout />} />
+          <Route path='*' element={<NotFound />} />
         </Route>
       </Routes>
     </BannersProvider>

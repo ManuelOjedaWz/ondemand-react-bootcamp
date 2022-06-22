@@ -1,6 +1,8 @@
 import React, { useState } from 'react'
 import { Link, useNavigate } from 'react-router-dom'
 import Logo from '../../assets/logo.png'
+import { Input } from '../../styles/global'
+import { Button } from '../FeaturedProducts/styles'
 import './styles.scss'
 
 export default function Header () {
@@ -39,16 +41,18 @@ export default function Header () {
           </h1>
         </section>
         <section className="header--shopping-search">
-          <input
+          <Input
             type="text"
             className="header--search-bar"
             onKeyUp={handleKeyboardSearch}
             onChange={handleChange}
           />
-          <button onClick={handleSearch}>
+          <Button onClick={handleSearch}>
             <i className="fas fa-search"></i>
-          </button>
-          <i className="fa-solid fa-cart-shopping"></i>
+          </Button>
+          <Link to='/cart'>
+            <i className="fa-solid fa-cart-shopping"></i>
+          </Link>
         </section>
       </header>
     </section>

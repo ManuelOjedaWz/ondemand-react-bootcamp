@@ -3,6 +3,7 @@ import { useNavigate } from 'react-router'
 import { useSearchParams } from 'react-router-dom'
 import Category from '../../interfaces/Category'
 import useHandleSidebar from '../../utils/hooks/useHandleSidebar'
+import { Button } from '../FeaturedProducts/styles'
 import ProductSidebarCheckbox from './ProductSidebarCheckbox'
 
 const isActive = (filters: string[], id: string) => {
@@ -39,7 +40,7 @@ export default function ProductsSidebar ({ categories = [] }: ProductsSidebarPro
         })
       }
 
-      <button onClick={handleClearFilter}>Clear filters</button>
+      <Button onClick={handleClearFilter}>Clear filters</Button>
     </div>
   )
 }

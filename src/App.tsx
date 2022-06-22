@@ -15,6 +15,7 @@ import { useFeaturedProducts } from './utils/hooks/useFeaturedProducts'
 import { setFeaturedProducts } from './store/featuredProductsSlice'
 import Product from './views/Product'
 import Search from './views/Search'
+import Cart from './views/Cart'
 
 function App () {
   const categories = useFeaturedCategories()
@@ -49,6 +50,7 @@ function App () {
           <Route path='/products' element={<Products />} />
           <Route path='/product/:productId' element={<Product />} />
           <Route path='/search' element={<Search />} />
+          <Route path='/cart' element={<Cart />} />
         </Route>
       </Routes>
     </BannersProvider>

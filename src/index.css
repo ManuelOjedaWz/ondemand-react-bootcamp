@@ -22,19 +22,10 @@ code {
     monospace;
 }
 
-.product-item span {
-  font-weight: bold;
-}
-
 .product-item button,
 .product-item a {
   display: block;
   width: 100%;
-}
-
-.product-item--inner-grid {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
 }
 
 

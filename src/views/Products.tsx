@@ -8,6 +8,7 @@ import { Link, useNavigate } from 'react-router-dom'
 import { useProducts } from '../utils/hooks/useProducts'
 import { useSelector } from 'react-redux'
 import { getCategories } from '../store/categoriesSlice'
+import { Button } from '../components/FeaturedProducts/styles'
 
 export default function Products () {
   const navigate = useNavigate()
@@ -31,9 +32,9 @@ export default function Products () {
       <div className="products-layout--products">
         <h1>This is Product List Page</h1>
         <Link to='/home'>
-          <button>
+          <Button>
             Return to home
-          </button>
+          </Button>
         </Link>
 
         <h4>

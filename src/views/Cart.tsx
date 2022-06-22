@@ -1,0 +1,24 @@
+import React from 'react'
+import { useSelector } from 'react-redux'
+import { Link } from 'react-router-dom'
+import CartTable from '../components/CartTable'
+import { getCart } from '../store/cartSlice'
+import { Button, Table } from '../styles/global'
+
+export default function Cart () {
+  const { products } = useSelector(getCart)
+
+  return (
+    <div>
+      <h1>Shopping Cart</h1>
+
+      <CartTable products={products} />
+
+      <Link to='/checkout'>
+        <Button>
+          Checkout
+        </Button>
+      </Link>
+    </div>
+  )
+}

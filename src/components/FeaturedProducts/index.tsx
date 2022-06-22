@@ -7,6 +7,7 @@ import ProductItem from './ProductItem'
 import './styles.scss'
 import { useSelector } from 'react-redux'
 import { getFeaturedProducts } from '../../store/featuredProductsSlice'
+import { Button } from './styles'
 
 export default function FeaturedProducts () {
   const { data, isLoading } = useSelector(getFeaturedProducts)
@@ -32,9 +33,9 @@ export default function FeaturedProducts () {
 
       <div className="featured-products--button">
         <Link to='/products'>
-          <button>
+          <Button>
             View all products
-          </button>
+          </Button>
         </Link>
       </div>
     </section>

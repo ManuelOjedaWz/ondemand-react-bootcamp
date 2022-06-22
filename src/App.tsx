@@ -16,6 +16,7 @@ import { setFeaturedProducts } from './store/featuredProductsSlice'
 import Product from './views/Product'
 import Search from './views/Search'
 import Cart from './views/Cart'
+import Checkout from './views/Checkout'
 
 function App () {
   const categories = useFeaturedCategories()
@@ -51,6 +52,7 @@ function App () {
           <Route path='/product/:productId' element={<Product />} />
           <Route path='/search' element={<Search />} />
           <Route path='/cart' element={<Cart />} />
+          <Route path='/checkout' element={<Checkout />} />
         </Route>
       </Routes>
     </BannersProvider>

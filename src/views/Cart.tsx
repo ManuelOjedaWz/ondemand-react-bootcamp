@@ -15,7 +15,7 @@ export default function Cart () {
       <CartTable products={products} />
 
       <Link to='/checkout'>
-        <Button>
+        <Button disabled={products.length === 0}>
           Checkout
         </Button>
       </Link>

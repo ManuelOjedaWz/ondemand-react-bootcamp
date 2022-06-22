@@ -32,6 +32,13 @@ export const Input = styled.input`
   height: 2rem;
 `
 
+export const TextArea = styled.textarea`
+  border-radius: 0.5rem;
+  padding-left: 1rem;
+  padding-right: 1rem;
+  width: 100%;
+`
+
 export const Table = styled.table`
   width: 100%;
   text-align: center;
@@ -41,10 +48,20 @@ export const Table = styled.table`
   margin-bottom: 2rem;
   
   td, th {
+    padding: 1rem;
     border: 1px solid black;
   }
 
   img {
     max-width: 100px;
   }
+`
+
+export const Title = styled.h1`
+  margin-bottom: 1rem;
+`
+
+export const Subtitle = styled.h3`
+  margin-bottom: 1rem;
+  margin-top: 0;
 `

@@ -1,7 +1,7 @@
 import React from 'react'
 import { useDispatch } from 'react-redux'
 import { CartProduct, removeItemFromCart } from '../../store/cartSlice'
-import { Table } from '../../styles/global'
+import { Button, Table } from '../../styles/global'
 import AmmountInput from './AmmountInput'
 
 interface CartTableProps {
@@ -41,9 +41,9 @@ export default function CartTable ({ products }: CartTableProps) {
               return (
                 <tr key={product.product?.id}>
                   <td>
-                    <button onClick={() => removeItem(product)}>
+                    <Button onClick={() => removeItem(product)}>
                       <i className="fas fa-remove fa-2x"></i>
-                    </button>
+                    </Button>
                   </td>
                   <td>
                     <img src={product.product?.data.mainimage.url} alt={product.product?.data.name} />
@@ -62,9 +62,7 @@ export default function CartTable ({ products }: CartTableProps) {
             <td colSpan={5}>
               <b>Cart total</b>
             </td>
-            <td>
-              {calculateTotal()}
-            </td>
+            <td>$ { calculateTotal() } USD</td>
           </tr>
         </tbody>
       </Table>

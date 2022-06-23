@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useMemo, useState } from 'react'
 import { useSelector } from 'react-redux'
 import { Link, useNavigate } from 'react-router-dom'
 import Logo from '../../assets/logo.png'
@@ -31,10 +31,7 @@ export default function Header () {
     navigate(0)
   }
 
-  const getTotalAmmount = (): number => {
-    const initialValue = 0
-    return products.reduce((prevValue, { ammount }) => prevValue + ammount, initialValue)
-  }
+  const totalAmmount = useMemo(() => products.reduce((prevValue, { ammount }) => prevValue + ammount, 0), [products])
 
   return (
     <section>
@@ -66,7 +63,7 @@ export default function Header () {
               <i className="fa-solid fa-cart-shopping"></i>
             </Link>
             <AmmountSpan>
-              { getTotalAmmount() }
+              { totalAmmount }
             </AmmountSpan>
           </div>
         </section>

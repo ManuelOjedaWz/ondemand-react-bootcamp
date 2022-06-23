@@ -8,6 +8,7 @@ import './styles.scss'
 import { useSelector } from 'react-redux'
 import { getFeaturedProducts } from '../../store/featuredProductsSlice'
 import { Button } from './styles'
+import List from '../List'
 
 export default function FeaturedProducts () {
   const { data, isLoading } = useSelector(getFeaturedProducts)
@@ -24,11 +25,7 @@ export default function FeaturedProducts () {
       <h3 className='title'>Featured Products</h3>
 
       <div className="featured-products--grid">
-        { results.map((product: Product) => {
-          return (
-            <ProductItem key={product.id} product={product} />
-          )
-        }) }
+        <List items={results} itemComponent={ProductItem} prop="product" />
       </div>
 
       <div className="featured-products--button">

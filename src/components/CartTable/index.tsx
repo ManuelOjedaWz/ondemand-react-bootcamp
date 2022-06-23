@@ -11,7 +11,10 @@ interface CartTableProps {
 export default function CartTable ({ products }: CartTableProps) {
   const dispatch = useDispatch()
 
-  const calculateTotal = useMemo(() => products.reduce((prevValue, product) => prevValue + (product.ammount * product.product?.data.price), 0), [products])
+  const calculateTotal = useMemo(() => {
+    const total = products.reduce((prevValue, product) => prevValue + (product.ammount * product.product?.data.price), 0)
+    return total.toFixed(2)
+  }, [products])
 
   const removeItem = (product: CartProduct) => {
     dispatch(removeItemFromCart({
@@ -50,7 +53,7 @@ export default function CartTable ({ products }: CartTableProps) {
                   <td>
                     <AmmountInput product={product} />
                   </td>
-                  <td>{ product.product?.data.price * product.ammount }</td>
+                  <td><b>$</b> { (product.product?.data.price * product.ammount).toFixed(2) } <b>USD</b></td>
                 </tr>
               )
             })
@@ -59,7 +62,9 @@ export default function CartTable ({ products }: CartTableProps) {
             <td colSpan={5}>
               <b>Cart total</b>
             </td>
-            <td>$ { calculateTotal } USD</td>
+            <td>
+              <b>$</b> { calculateTotal } <b>USD</b>
+            </td>
           </tr>
         </tbody>
       </Table>

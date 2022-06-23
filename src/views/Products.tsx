@@ -9,6 +9,7 @@ import { useProducts } from '../utils/hooks/useProducts'
 import { useSelector } from 'react-redux'
 import { getCategories } from '../store/categoriesSlice'
 import { Button } from '../components/FeaturedProducts/styles'
+import List from '../components/List'
 
 export default function Products () {
   const navigate = useNavigate()
@@ -45,14 +46,9 @@ export default function Products () {
           products.isLoading
             ? <Spinner />
             : (
-              <div className="products-layout-products-grid">
-                {
-                products.data.results.map((product: any, index: any) => {
-                  return (
-                    <ProductItem product={product} key={index} />
-                  )
-                })}
-              </div>
+                <div className="products-layout-products-grid">
+                  <List items={products.data.results} itemComponent={ProductItem} prop="product" />
+                </div>
               )
         }
 

@@ -3,7 +3,20 @@ import { RootState } from '.'
 import Product from '../interfaces/Product'
 
 export interface CartProduct {
-  product: Product|null;
+  id?: string;
+  sku?: string;
+  name?: string;
+  mainimage: {
+    alt: string;
+    copyright?: string;
+    dimensions: {
+      height: number;
+      weight: number;
+    };
+    url: string;
+  };
+  price: number;
+  stock: number;
   ammount: number;
 }
 
@@ -16,7 +29,7 @@ export const cartSlice = createSlice({
   initialState,
   reducers: {
     setCart: (state, { payload }) => {
-      const alreadyInCart = state.products.find(({ product }) => product?.id === payload.product.id)
+      const alreadyInCart = state.products.find((product) => product?.id === payload.id)
 
       if (alreadyInCart) {
         const index = state.products.indexOf(alreadyInCart)
@@ -27,7 +40,7 @@ export const cartSlice = createSlice({
       state.products.push(payload)
     },
     removeItemFromCart: (state, { payload }) => {
-      state.products = state.products.filter(({ product }) => product?.id !== payload.product.id)
+      state.products = state.products.filter((product) => product.id !== payload.id)
     }
   }
 })

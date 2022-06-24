@@ -30,7 +30,7 @@ export default function AmmountInput ({ product }: AmmountInputProps) {
         value={ammount}
         onChange={handleChange}
         min={1}
-        max={product.product?.data.stock}
+        max={product.stock}
       />
     </>
   )

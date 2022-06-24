@@ -12,13 +12,13 @@ export default function CartTable ({ products }: CartTableProps) {
   const dispatch = useDispatch()
 
   const calculateTotal = useMemo(() => {
-    const total = products.reduce((prevValue, product) => prevValue + (product.ammount * product.product?.data.price), 0)
+    const total = products.reduce((prevValue, product) => prevValue + (product.ammount * product.price), 0)
     return total.toFixed(2)
   }, [products])
 
   const removeItem = (product: CartProduct) => {
     dispatch(removeItemFromCart({
-      product: product.product
+      ...product
     }))
   }
 
@@ -39,21 +39,21 @@ export default function CartTable ({ products }: CartTableProps) {
           {
             products.map((product) => {
               return (
-                <tr key={product.product?.id}>
+                <tr key={product?.id}>
                   <td>
                     <Button onClick={() => removeItem(product)}>
                       <i className="fas fa-remove fa-2x"></i>
                     </Button>
                   </td>
                   <td>
-                    <img src={product.product?.data.mainimage.url} alt={product.product?.data.name} />
+                    <img src={product.mainimage.url} alt={product?.name} />
                   </td>
-                  <td>{ product.product?.data.name }</td>
-                  <td>{ product.product?.data.price }</td>
+                  <td>{ product?.name }</td>
+                  <td>{ product.price }</td>
                   <td>
                     <AmmountInput product={product} />
                   </td>
-                  <td><b>$</b> { (product.product?.data.price * product.ammount).toFixed(2) } <b>USD</b></td>
+                  <td><b>$</b> { (product.price * product.ammount).toFixed(2) } <b>USD</b></td>
                 </tr>
               )
             })

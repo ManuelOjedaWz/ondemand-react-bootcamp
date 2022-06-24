@@ -8,7 +8,7 @@ export default function Table () {
 
   const calculateTotal = useMemo(() => {
     const initialValue = 0
-    return products.reduce((prevValue, product) => prevValue + (product.ammount * product.product?.data.price), initialValue).toFixed(2)
+    return products.reduce((prevValue, product) => prevValue + (product.ammount * product.price), initialValue).toFixed(2)
   }, [])
 
   return (
@@ -24,15 +24,15 @@ export default function Table () {
         {
           products.map((product) => {
             return (
-              <tr key={product.product?.id}>
+              <tr key={product?.id}>
                 <td>
-                  { product.product?.data.name }
+                  { product?.name }
                 </td>
                 <td>
                   { product.ammount }
                 </td>
                 <td>
-                  <b>$</b> { (product.product?.data.price * product.ammount).toFixed(2) } <b>USD</b>
+                  <b>$</b> { (product.price * product.ammount).toFixed(2) } <b>USD</b>
                 </td>
               </tr>
             )

@@ -19,7 +19,12 @@ function useAddToCart (product: Product|null) {
     }
 
     const cartProduct: CartProduct = {
-      product,
+      id: product?.id,
+      name: product?.data.name,
+      sku: product?.data.sku,
+      price: product?.data.price,
+      stock: product?.data.stock,
+      mainimage: product?.data.mainimage,
       ammount: number
     }
 

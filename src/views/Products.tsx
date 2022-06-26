@@ -14,9 +14,6 @@ import List from '../components/List'
 export default function Products () {
   const navigate = useNavigate()
   const { featured: products } = useProducts()
-  const {
-    data: categories
-  } = useSelector(getCategories)
 
   const handleProductFetch = (page: number) => {
     const url = new URL(window.location.href)
@@ -27,11 +24,8 @@ export default function Products () {
 
   return (
     <section className='products-layout'>
-      <ProductsSidebar
-        categories={categories?.results}
-      />
+      <ProductsSidebar />
       <div className="products-layout--products">
-        <h1>This is Product List Page</h1>
         <Link to='/home'>
           <Button>
             Return to home

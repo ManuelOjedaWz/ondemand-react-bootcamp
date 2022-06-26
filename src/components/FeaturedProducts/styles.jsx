@@ -16,6 +16,7 @@ export const ProductItemGrid = styled.div`
   display: grid;
   grid-template-columns: 1fr 1fr;
   gap: 5px;
+  align-items: end;
 `
 
 export const Button = styled.button`

@@ -9,6 +9,7 @@ import { useSelector } from 'react-redux'
 import { getFeaturedProducts } from '../../store/featuredProductsSlice'
 import { Button } from './styles'
 import List from '../List'
+import { Subtitle } from '../../styles/global'
 
 export default function FeaturedProducts () {
   const { data, isLoading } = useSelector(getFeaturedProducts)

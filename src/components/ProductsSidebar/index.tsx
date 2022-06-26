@@ -1,7 +1,10 @@
 import React from 'react'
+import { useSelector } from 'react-redux'
 import Category from '../../interfaces/Category'
+import { getCategories } from '../../store/categoriesSlice'
 import useHandleSidebar from '../../utils/hooks/useHandleSidebar'
 import { Button } from '../FeaturedProducts/styles'
+import Spinner from '../Spinner'
 import ProductSidebarCheckbox from './ProductSidebarCheckbox'
 
 const isActive = (filters: string[], id: string) => {
@@ -10,18 +13,23 @@ const isActive = (filters: string[], id: string) => {
   }
 }
 
-interface ProductsSidebarProps {
-  categories: Array<Category>;
-}
-
-export default function ProductsSidebar ({ categories = [] }: ProductsSidebarProps) {
+export default function ProductsSidebar () {
+  const {
+    data,
+    isLoading
+  } = useSelector(getCategories)
+  const categories = data.results
   const { filters, handleFilters, handleClearFilter } = useHandleSidebar(categories)
+
+  if (isLoading) {
+    return <Spinner />
+  }
 
   return (
     <div className='products-layout--sidebar'>
       <h3>Filters:</h3>
       {
-        categories.map((category) => {
+        categories.map((category: Category) => {
           return (
             <div
               key={category?.id}

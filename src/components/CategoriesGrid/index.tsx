@@ -22,13 +22,7 @@ export default function CategoriesGrid () {
       <h3>Featured Categories</h3>
 
       <div className="featured-categories--grid">
-        { isLoading && (<p>Loading ...</p>) }
-        {
-          !isLoading &&
-          (
-            <List items={results} itemComponent={CategoryItem} prop="category" />
-          )
-        }
+        <List items={results} itemComponent={CategoryItem} prop="category" />
       </div>
     </section>
   )

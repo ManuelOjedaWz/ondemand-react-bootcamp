@@ -1,7 +1,7 @@
 import React, { useMemo } from 'react'
 import { useSelector } from 'react-redux'
 import { selectCart } from '../../store/cartSlice'
-import { CheckoutGridTable } from './styles'
+import { CheckoutGridTable } from './styled'
 
 export default function Table () {
   const { products, total } = useSelector(selectCart)

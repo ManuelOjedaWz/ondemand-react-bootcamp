@@ -2,7 +2,7 @@ import React, { FormEvent, FormEventHandler, useState } from 'react'
 import { CartProduct } from '../../store/cartSlice'
 import { Input, Subtitle, TextArea } from '../../styles/global'
 import CheckoutTable from './Table'
-import { CheckoutGridForm, CheckoutGridTable, CheckoutGridWrapper } from './styles'
+import { CheckoutGridForm, CheckoutGridTable, CheckoutGridWrapper } from './styled'
 import { Button } from '../FeaturedProducts/styled'
 import { Link } from 'react-router-dom'
 

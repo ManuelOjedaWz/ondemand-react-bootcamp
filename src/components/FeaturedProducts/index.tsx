@@ -7,7 +7,7 @@ import ProductItem from './ProductItem'
 import './styles.scss'
 import { useSelector } from 'react-redux'
 import { getFeaturedProducts } from '../../store/featuredProductsSlice'
-import { Button } from './styles'
+import { Button } from './styled'
 import List from '../List'
 import { Subtitle } from '../../styles/global'
 

@@ -2,7 +2,7 @@ import React from 'react'
 import PropTypes from 'prop-types'
 import { Link } from 'react-router-dom'
 import Product from '../../interfaces/Product'
-import { ProductItemWrapper, ProductItemGrid } from './styles'
+import { ProductItemWrapper, ProductItemGrid } from './styled'
 import { Button } from '../../styles/global'
 import useAddToCart from '../../utils/hooks/useAddToCart'
 

@@ -1,11 +1,11 @@
 import React from 'react'
 import { useSelector } from 'react-redux'
 import CheckoutGrid from '../components/CheckoutGrid'
-import { getCart } from '../store/cartSlice'
+import { selectCart } from '../store/cartSlice'
 import { Title } from '../styles/global'
 
 export default function Checkout () {
-  const { products } = useSelector(getCart)
+  const { products } = useSelector(selectCart)
 
   return (
     <div>

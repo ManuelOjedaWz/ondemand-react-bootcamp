@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react'
 import { useDispatch } from 'react-redux'
-import { CartProduct, setCart } from '../../store/cartSlice'
+import { CartProduct, addToCart, calculateTotal } from '../../store/cartSlice'
 import { Input } from '../../styles/global'
 
 interface AmmountInputProps {
@@ -16,7 +16,8 @@ export default function AmmountInput ({ product }: AmmountInputProps) {
       ...product,
       ammount
     }
-    dispatch(setCart(cartProduct))
+    dispatch(addToCart(cartProduct))
+    dispatch(calculateTotal())
   }, [ammount])
 
   const handleChange = (e: any) => {

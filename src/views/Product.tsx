@@ -7,7 +7,7 @@ import Gallery from '../components/Gallery'
 import '../styles/Product.scss'
 import { Button, Input } from '../styles/global'
 import { useDispatch } from 'react-redux'
-import { CartProduct, setCart } from '../store/cartSlice'
+import { CartProduct, addToCart } from '../store/cartSlice'
 import useAddToCart from '../utils/hooks/useAddToCart'
 
 interface Spec {

@@ -1,6 +1,6 @@
 import React, { useMemo } from 'react'
-import { useDispatch } from 'react-redux'
-import { CartProduct, removeItemFromCart } from '../../store/cartSlice'
+import { useDispatch, useSelector } from 'react-redux'
+import { calculateTotal, CartProduct, selectCart, removeProductFromCart } from '../../store/cartSlice'
 import { Button, Table } from '../../styles/global'
 import AmmountInput from './AmmountInput'
 
@@ -9,17 +9,12 @@ interface CartTableProps {
 }
 
 export default function CartTable ({ products }: CartTableProps) {
+  const { total } = useSelector(selectCart)
   const dispatch = useDispatch()
 
-  const calculateTotal = useMemo(() => {
-    const total = products.reduce((prevValue, product) => prevValue + (product.ammount * product.price), 0)
-    return total.toFixed(2)
-  }, [products])
-
   const removeItem = (product: CartProduct) => {
-    dispatch(removeItemFromCart({
-      ...product
-    }))
+    dispatch(removeProductFromCart(product))
+    dispatch(calculateTotal())
   }
 
   return (
@@ -63,7 +58,7 @@ export default function CartTable ({ products }: CartTableProps) {
               <b>Cart total</b>
             </td>
             <td>
-              <b>$</b> { calculateTotal } <b>USD</b>
+              <b>$</b> { total } <b>USD</b>
             </td>
           </tr>
         </tbody>

@@ -2,11 +2,11 @@ import React from 'react'
 import { useSelector } from 'react-redux'
 import { Link } from 'react-router-dom'
 import CartTable from '../components/CartTable'
-import { getCart } from '../store/cartSlice'
+import { selectCart } from '../store/cartSlice'
 import { Button, Table } from '../styles/global'
 
 export default function Cart () {
-  const { products } = useSelector(getCart)
+  const { products } = useSelector(selectCart)
 
   return (
     <div>

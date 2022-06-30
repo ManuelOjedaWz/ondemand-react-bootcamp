@@ -8,7 +8,7 @@ import { Link, useNavigate } from 'react-router-dom'
 import { useProducts } from '../utils/hooks/useProducts'
 import { useSelector } from 'react-redux'
 import { getCategories } from '../store/categoriesSlice'
-import { Button } from '../components/FeaturedProducts/styles'
+import { Button } from '../components/FeaturedProducts/styled'
 import List from '../components/List'
 
 export default function Products () {

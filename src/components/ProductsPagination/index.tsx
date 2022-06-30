@@ -1,7 +1,7 @@
 import React, { useCallback, useEffect, useState } from 'react'
 import PropTypes from 'prop-types'
 import { FeaturedData } from '../../interfaces/Featured'
-import { ProductsPaginationButton, ProductsPaginationWrapper } from './styles'
+import { ProductsPaginationButton, ProductsPaginationWrapper } from './styled'
 import { useSearchParams } from 'react-router-dom'
 
 interface ProductsPaginationProps {

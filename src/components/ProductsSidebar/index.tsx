@@ -3,7 +3,7 @@ import { useSelector } from 'react-redux'
 import Category from '../../interfaces/Category'
 import { getCategories } from '../../store/categoriesSlice'
 import useHandleSidebar from '../../utils/hooks/useHandleSidebar'
-import { Button } from '../FeaturedProducts/styles'
+import { Button } from '../FeaturedProducts/styled'
 import Spinner from '../Spinner'
 import ProductSidebarCheckbox from './ProductSidebarCheckbox'
 

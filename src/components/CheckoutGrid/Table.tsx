@@ -1,15 +1,10 @@
 import React, { useMemo } from 'react'
 import { useSelector } from 'react-redux'
-import { getCart } from '../../store/cartSlice'
+import { selectCart } from '../../store/cartSlice'
 import { CheckoutGridTable } from './styles'
 
 export default function Table () {
-  const { products } = useSelector(getCart)
-
-  const calculateTotal = useMemo(() => {
-    const initialValue = 0
-    return products.reduce((prevValue, product) => prevValue + (product.ammount * product.price), initialValue).toFixed(2)
-  }, [])
+  const { products, total } = useSelector(selectCart)
 
   return (
     <CheckoutGridTable>
@@ -43,7 +38,7 @@ export default function Table () {
             <b>Cart Total</b>
           </td>
           <td>
-            <b>$</b> { calculateTotal } <b>USD</b>
+            <b>$</b> { total } <b>USD</b>
           </td>
         </tr>
       </tbody>

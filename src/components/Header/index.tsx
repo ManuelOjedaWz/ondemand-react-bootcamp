@@ -2,14 +2,14 @@ import React, { useMemo, useState } from 'react'
 import { useSelector } from 'react-redux'
 import { Link, useNavigate } from 'react-router-dom'
 import Logo from '../../assets/logo.png'
-import { getCart } from '../../store/cartSlice'
+import { selectCart } from '../../store/cartSlice'
 import { Input } from '../../styles/global'
-import { Button } from '../FeaturedProducts/styles'
-import { AmmountSpan } from './styles'
+import { Button } from '../FeaturedProducts/styled'
+import { AmmountSpan } from './styled'
 import './styles.scss'
 
 export default function Header () {
-  const { products } = useSelector(getCart)
+  const { products } = useSelector(selectCart)
   const [search, setSearch] = useState<string>('')
   const ENTER: string = 'Enter'
   const navigate = useNavigate()

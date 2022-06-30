@@ -1,7 +1,7 @@
 import { useState } from 'react'
 import { useDispatch } from 'react-redux'
 import Product from '../../interfaces/Product'
-import { CartProduct, setCart } from '../../store/cartSlice'
+import { CartProduct, addToCart, calculateTotal } from '../../store/cartSlice'
 
 function useAddToCart (product: Product|null) {
   const dispatch = useDispatch()
@@ -28,7 +28,8 @@ function useAddToCart (product: Product|null) {
       ammount: number
     }
 
-    dispatch(setCart(cartProduct))
+    dispatch(addToCart(cartProduct))
+    dispatch(calculateTotal())
   }
 
   return {

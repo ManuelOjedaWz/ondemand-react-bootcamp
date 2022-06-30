@@ -5,6 +5,10 @@ import { useFetchProduct } from '../utils/hooks/useFetchProduct'
 import IProduct from '../interfaces/Product'
 import Gallery from '../components/Gallery'
 import '../styles/Product.scss'
+import { Button, Input } from '../styles/global'
+import { useDispatch } from 'react-redux'
+import { CartProduct, addToCart } from '../store/cartSlice'
+import useAddToCart from '../utils/hooks/useAddToCart'
 
 interface Spec {
   spec_name: string;
@@ -14,19 +18,14 @@ interface Spec {
 export default function Product () {
   const { productId } = useParams()
   const { data, isLoading } = useFetchProduct(productId as string)
-  const [number, setNumber] = useState<number>(0)
   const [product, setProduct] = useState<IProduct|null>(null)
+  const { onHandleChange, handleAddToCart, number } = useAddToCart(product)
 
   useEffect(() => {
     if (!isLoading) {
       setProduct(data.results[0])
     }
   }, [data, isLoading])
-
-  const onHandleChange = (e: React.ChangeEvent) => {
-    const { value } = (e.target as HTMLInputElement)
-    setNumber(parseInt(value, 10))
-  }
 
   if (isLoading) {
     return (
@@ -37,7 +36,7 @@ export default function Product () {
   return (
     <section className='product'>
       <Link to='/products'>
-        <button>Return</button>
+        <Button>Return</Button>
       </Link>
       <Gallery images={product?.data.images} />
 
@@ -65,8 +64,13 @@ export default function Product () {
           </ul>
 
           <div className="product--input">
-            <input type="number" onChange={onHandleChange} value={number} min={0} />
-            <button>Add to cart</button>
+            <Input type="number" onChange={onHandleChange} value={number} min={0} max={product?.data.stock} />
+            <Button
+              disabled={product?.data.stock === 0}
+              onClick={handleAddToCart}
+            >
+              Add to cart
+            </Button>
           </div>
         </div>
       </div>

@@ -16,14 +16,13 @@ export function useBaseAPI (url: string) {
   } = useLatestAPI()
 
   const [featured, setFeatured] = useState<Featured>(() => initialState)
-  const [controller] = useState(new AbortController())
+  const controller = new AbortController()
 
   const fetchFromAPI = async () => {
     try {
       setFeatured(initialState)
-      const { signal } = controller
       const response = await fetch(url, {
-        signal
+        signal: controller.signal
       })
 
       const data = await response.json()

@@ -23,19 +23,16 @@ export default function FeaturedSlider () {
   return (
     <div className='home--slider'>
       <div>
-        { isLoading && (<p>Loading ...</p>) }
         {
-          data && data.results && (
-            data.results.map((banner: IBanner, bannerIndex: number) => {
-              if (bannerIndex === index) {
-                return (
-                  <Banner banner={banner} key={banner.id} />
-                )
-              }
-
+          data.results.map((banner: IBanner, bannerIndex: number) => {
+            if (bannerIndex !== index) {
               return null
-            })
-          )
+            }
+
+            return (
+              <Banner banner={banner} key={banner.id} />
+            )
+          })
         }
       </div>
       <SliderButton

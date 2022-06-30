@@ -6,6 +6,7 @@ import NotFoundImage from '../assets/crying.jpeg'
 import ProductsPagination from '../components/ProductsPagination'
 import { useNavigate } from 'react-router'
 import '../styles/Search.scss'
+import List from '../components/List'
 
 export default function Search () {
   const navigate = useNavigate()
@@ -38,13 +39,7 @@ export default function Search () {
     <>
       <h1>Search</h1>
       <section className='products-layout-products-grid'>
-        {
-          data.results.map((product: any, index: any) => {
-            return (
-              <ProductItem product={product} key={index} />
-            )
-          })
-        }
+        <List items={data.results} itemComponent={ProductItem} prop="product" />
       </section>
       <ProductsPagination products={data} onHandleProductFetch={handleProductFetch} />
     </>

@@ -1,7 +1,8 @@
-import React, { useEffect, useState } from 'react'
+import React, { useCallback, useEffect, useState } from 'react'
 import PropTypes from 'prop-types'
-import './styles.scss'
 import { FeaturedData } from '../../interfaces/Featured'
+import { ProductsPaginationButton, ProductsPaginationWrapper } from './styled'
+import { useSearchParams } from 'react-router-dom'
 
 interface ProductsPaginationProps {
   products: FeaturedData;
@@ -14,6 +15,10 @@ interface ButtonProp {
 
 export default function ProductsPagination ({ products, onHandleProductFetch }: ProductsPaginationProps) {
   const [paginationButtons, setPaginationButtons] = useState<Array<ButtonProp>>([])
+  const [searchParams] = useSearchParams()
+  const page = searchParams.get('page')
+    ? parseInt(searchParams.get('page') as string)
+    : 1
 
   useEffect(() => {
     const newButtons = Array
@@ -31,32 +36,31 @@ export default function ProductsPagination ({ products, onHandleProductFetch }: 
   }
 
   return (
-    <div
-      className='products-pagination'
-    >
-      <button
+    <ProductsPaginationWrapper>
+      <ProductsPaginationButton
         disabled={!products.prev_page}
         onClick={() => onHandleProductFetch(getPage((products.prev_page as string)))}
       >
         Prev
-      </button>
+      </ProductsPaginationButton>
       {
         paginationButtons.map((value, index) => (
-          <button
+          <ProductsPaginationButton
+            active={page === value.label}
             onClick={() => onHandleProductFetch(value.label)}
             key={index}
           >
             {value.label}
-          </button>
+          </ProductsPaginationButton>
         ))
       }
-      <button
+      <ProductsPaginationButton
         disabled={!products.next_page}
         onClick={() => onHandleProductFetch(getPage((products.next_page as string)))}
       >
         Next
-      </button>
-    </div>
+      </ProductsPaginationButton>
+    </ProductsPaginationWrapper>
   )
 }
 

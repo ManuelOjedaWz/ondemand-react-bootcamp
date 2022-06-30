@@ -4,6 +4,7 @@
   .title {
     font-size: 2rem;
     text-align: center;
+    margin-bottom: .8rem;
   }
 
   .featured-products--grid {
@@ -11,12 +12,7 @@
     grid-template-columns: repeat(2, 1fr);
     gap: 2rem;
     margin-bottom: 1.2rem;
-
-    img {
-      display: block;
-      max-width: 100%;
-      margin: 0 auto;
-    }
+    align-items: flex-end;
     
     @media (min-width: 768px) {
       grid-template-columns: repeat(3, 1fr);

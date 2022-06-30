@@ -2,18 +2,22 @@ import React from 'react'
 import PropTypes from 'prop-types'
 import { Link } from 'react-router-dom'
 import Product from '../../interfaces/Product'
+import { ProductItemWrapper, ProductItemGrid } from './styled'
+import { Button } from '../../styles/global'
+import useAddToCart from '../../utils/hooks/useAddToCart'
 
 interface ProductItemProps {
   product: Product
 }
 
 export default function ProductItem ({ product }: ProductItemProps) {
+  const { handleAddToCart } = useAddToCart(product)
   const {
     data: { mainimage, name, category, price }
   } = product
 
   return (
-    <div className='product-item'>
+    <ProductItemWrapper>
       <img src={mainimage.url} />
       <p>
         <span>Name:</span> {name}
@@ -24,15 +28,20 @@ export default function ProductItem ({ product }: ProductItemProps) {
       <p>
         <span>Price:</span> ${price} USD
       </p>
-      <div className="product-item--inner-grid">
+      <ProductItemGrid>
         <Link to={`/product/${product.id}`}>
-          <button>
+          <Button>
             Details
-          </button>
+          </Button>
         </Link>
-        <button>Add to cart</button>
-      </div>
-    </div>
+        <Button
+          disabled={product.data.stock === 0}
+          onClick={handleAddToCart}
+        >
+          Add to cart
+        </Button>
+      </ProductItemGrid>
+    </ProductItemWrapper>
   )
 }
 

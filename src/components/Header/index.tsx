@@ -1,9 +1,15 @@
-import React, { useState } from 'react'
+import React, { useMemo, useState } from 'react'
+import { useSelector } from 'react-redux'
 import { Link, useNavigate } from 'react-router-dom'
 import Logo from '../../assets/logo.png'
+import { selectCart } from '../../store/cartSlice'
+import { Input } from '../../styles/global'
+import { Button } from '../FeaturedProducts/styled'
+import { AmmountSpan } from './styled'
 import './styles.scss'
 
 export default function Header () {
+  const { products } = useSelector(selectCart)
   const [search, setSearch] = useState<string>('')
   const ENTER: string = 'Enter'
   const navigate = useNavigate()
@@ -25,6 +31,8 @@ export default function Header () {
     navigate(0)
   }
 
+  const totalAmmount = useMemo(() => products.reduce((prevValue, { ammount }) => prevValue + ammount, 0), [products])
+
   return (
     <section>
       <header className='header'>
@@ -34,21 +42,30 @@ export default function Header () {
           </Link>
         </section>
         <section className="header--title">
-          <h1 className='header-title'>
-            E-Commerce
-          </h1>
+          <Link to='/'>
+            <h1 className='header-title'>
+              E-Commerce
+            </h1>
+          </Link>
         </section>
         <section className="header--shopping-search">
-          <input
+          <Input
             type="text"
             className="header--search-bar"
             onKeyUp={handleKeyboardSearch}
             onChange={handleChange}
           />
-          <button onClick={handleSearch}>
+          <Button onClick={handleSearch}>
             <i className="fas fa-search"></i>
-          </button>
-          <i className="fa-solid fa-cart-shopping"></i>
+          </Button>
+          <div>
+            <Link to='/cart'>
+              <i className="fa-solid fa-cart-shopping"></i>
+            </Link>
+            <AmmountSpan>
+              { totalAmmount }
+            </AmmountSpan>
+          </div>
         </section>
       </header>
     </section>

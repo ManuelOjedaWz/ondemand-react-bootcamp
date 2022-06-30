@@ -8,13 +8,12 @@ import { Link, useNavigate } from 'react-router-dom'
 import { useProducts } from '../utils/hooks/useProducts'
 import { useSelector } from 'react-redux'
 import { getCategories } from '../store/categoriesSlice'
+import { Button } from '../components/FeaturedProducts/styled'
+import List from '../components/List'
 
 export default function Products () {
   const navigate = useNavigate()
   const { featured: products } = useProducts()
-  const {
-    data: categories
-  } = useSelector(getCategories)
 
   const handleProductFetch = (page: number) => {
     const url = new URL(window.location.href)
@@ -25,15 +24,12 @@ export default function Products () {
 
   return (
     <section className='products-layout'>
-      <ProductsSidebar
-        categories={categories?.results}
-      />
+      <ProductsSidebar />
       <div className="products-layout--products">
-        <h1>This is Product List Page</h1>
         <Link to='/home'>
-          <button>
+          <Button>
             Return to home
-          </button>
+          </Button>
         </Link>
 
         <h4>
@@ -44,14 +40,9 @@ export default function Products () {
           products.isLoading
             ? <Spinner />
             : (
-              <div className="products-layout-products-grid">
-                {
-                products.data.results.map((product: any, index: any) => {
-                  return (
-                    <ProductItem product={product} key={index} />
-                  )
-                })}
-              </div>
+                <div className="products-layout-products-grid">
+                  <List items={products.data.results} itemComponent={ProductItem} prop="product" />
+                </div>
               )
         }
 

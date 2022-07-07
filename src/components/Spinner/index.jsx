@@ -3,6 +3,6 @@ import './styles.css'
 
 export default function Spinner () {
   return (
-    <div className="loader">Loading...</div>
+    <div className="loader" data-testid="loader">Loading...</div>
   )
 }

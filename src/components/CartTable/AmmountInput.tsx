@@ -25,14 +25,15 @@ export default function AmmountInput ({ product }: AmmountInputProps) {
   }
 
   return (
-    <>
+    <div className='cart-table-body--input'>
       <Input
+        data-testid={`cart-table-body--input-{${product.id}}`}
         type='number'
         value={ammount}
         onChange={handleChange}
         min={1}
         max={product.stock}
       />
-    </>
+    </div>
   )
 }

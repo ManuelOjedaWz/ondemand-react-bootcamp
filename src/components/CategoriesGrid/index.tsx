@@ -18,7 +18,7 @@ export default function CategoriesGrid () {
   }
 
   return (
-    <section className='featured-categories'>
+    <section className='featured-categories' data-testid='featured-categories'>
       <h3>Featured Categories</h3>
 
       <div className="featured-categories--grid">

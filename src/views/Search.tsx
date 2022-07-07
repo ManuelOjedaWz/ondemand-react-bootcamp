@@ -28,7 +28,7 @@ export default function Search () {
 
   if (data.total_results_size === 0) {
     return (
-      <section className='search-not-found'>
+      <section className='search-not-found' data-testid='search-not-found'>
         <img src={NotFoundImage} alt="Not found" />
         <h1>No results were found in the search.</h1>
       </section>
@@ -36,12 +36,12 @@ export default function Search () {
   }
 
   return (
-    <>
+    <div data-testid='search-page'>
       <h1>Search</h1>
       <section className='products-layout-products-grid'>
         <List items={data.results} itemComponent={ProductItem} prop="product" />
       </section>
       <ProductsPagination products={data} onHandleProductFetch={handleProductFetch} />
-    </>
+    </div>
   )
 }

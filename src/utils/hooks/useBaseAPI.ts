@@ -1,6 +1,7 @@
 import { useState, useEffect } from 'react'
 import Featured from '../../interfaces/Featured'
 import { useLatestAPI } from './useLatestAPI'
+import axios from 'axios'
 
 const initialState = {
   data: {
@@ -21,11 +22,11 @@ export function useBaseAPI (url: string) {
   const fetchFromAPI = async () => {
     try {
       setFeatured(initialState)
-      const response = await fetch(url, {
+      const response = await axios.get(url, {
         signal: controller.signal
       })
 
-      const data = await response.json()
+      const { data } = await response
       setFeatured({
         data,
         isLoading: false

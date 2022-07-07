@@ -17,7 +17,7 @@ export default function ProductItem ({ product }: ProductItemProps) {
   } = product
 
   return (
-    <ProductItemWrapper>
+    <ProductItemWrapper datatest-id='product-item'>
       <img src={mainimage.url} />
       <p>
         <span>Name:</span> {name}
@@ -37,6 +37,7 @@ export default function ProductItem ({ product }: ProductItemProps) {
         <Button
           disabled={product.data.stock === 0}
           onClick={handleAddToCart}
+          data-testid={`product-item-${product.id}`}
         >
           Add to cart
         </Button>

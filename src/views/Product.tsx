@@ -34,28 +34,28 @@ export default function Product () {
   }
 
   return (
-    <section className='product'>
+    <section className='product' data-testid='product'>
       <Link to='/products'>
         <Button>Return</Button>
       </Link>
-      <Gallery images={product?.data.images} />
+      <Gallery images={data?.results[0].data.images} />
 
       <div className="product--body">
         <div className="product--description">
-          <h1>{product?.data.name}</h1>
-          <h3>Price: ${product?.data.price} USD</h3>
-          <h3>SKU: {product?.data.sku}</h3>
-          <h3>Category: {product?.data.category.slug}</h3>
+          <h1 data-testid='product-name'>{data?.results[0].data.name}</h1>
+          <h3 data-testid='product-price'>Price: ${data?.results[0].data.price} USD</h3>
+          <h3 data-testid='product-sku'>SKU: {data?.results[0].data.sku}</h3>
+          <h3 data-testid='product-category'>Category: {data?.results[0].data.category.slug}</h3>
         </div>
 
         <div className="product--add-to-cart">
-          <p>
-            {product?.data.description[0].text}
+          <p data-testid='product-description'>
+            {data?.results[0].data.description[0].text}
           </p>
           <h4>Specs:</h4>
-          <ul>
+          <ul data-testid='product-tags'>
             {
-              product?.data.specs.map((spec: Spec, index: number) => (
+              data?.results[0].data.specs.map((spec: Spec, index: number) => (
                 <li key={index}>
                   <b>{spec.spec_name}</b>: {spec.spec_value}
                 </li>
@@ -64,10 +64,18 @@ export default function Product () {
           </ul>
 
           <div className="product--input">
-            <Input type="number" onChange={onHandleChange} value={number} min={0} max={product?.data.stock} />
+            <Input
+              type="number"
+              onChange={onHandleChange}
+              value={number}
+              min={0}
+              max={data?.results[0].data.stock}
+              data-testid="product-add-to-cart-input"
+            />
             <Button
-              disabled={product?.data.stock === 0}
+              disabled={data?.results[0].data.stock === 0}
               onClick={handleAddToCart}
+              data-testid="product-add-to-cart-button"
             >
               Add to cart
             </Button>

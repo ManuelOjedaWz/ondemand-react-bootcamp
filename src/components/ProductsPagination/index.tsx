@@ -36,9 +36,10 @@ export default function ProductsPagination ({ products, onHandleProductFetch }: 
   }
 
   return (
-    <ProductsPaginationWrapper>
+    <ProductsPaginationWrapper data-testid="product-pagination-component">
       <ProductsPaginationButton
         disabled={!products.prev_page}
+        data-testid="product-pagination-component-prev"
         onClick={() => onHandleProductFetch(getPage((products.prev_page as string)))}
       >
         Prev
@@ -57,6 +58,7 @@ export default function ProductsPagination ({ products, onHandleProductFetch }: 
       <ProductsPaginationButton
         disabled={!products.next_page}
         onClick={() => onHandleProductFetch(getPage((products.next_page as string)))}
+        data-testid="product-pagination-component-next"
       >
         Next
       </ProductsPaginationButton>

@@ -22,7 +22,7 @@ export default function FeaturedProducts () {
   }
 
   return (
-    <section className='featured-products'>
+    <section className='featured-products' data-testid='featured-products'>
       <h3 className='title'>Featured Products</h3>
 
       <div className="featured-products--grid">

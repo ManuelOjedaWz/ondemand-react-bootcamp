@@ -26,7 +26,7 @@ export default function ProductsSidebar () {
   }
 
   return (
-    <div className='products-layout--sidebar'>
+    <div className='products-layout--sidebar' data-testid="products-layout--sidebar">
       <h3>Filters:</h3>
       {
         categories.map((category: Category) => {

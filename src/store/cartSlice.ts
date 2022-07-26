@@ -1,4 +1,4 @@
-import { createSlice } from '@reduxjs/toolkit'
+import { createSlice, current } from '@reduxjs/toolkit'
 import { RootState } from '.'
 import Product from '../interfaces/Product'
 
@@ -33,7 +33,8 @@ export const cartSlice = createSlice({
       const alreadyInCart = state.products.findIndex((product) => product?.id === payload.id)
 
       if (alreadyInCart >= 0) {
-        state.products[alreadyInCart].ammount = parseInt(payload.ammount)
+        const ammount = payload.ammount ? payload.ammount : 0
+        state.products[alreadyInCart].ammount = parseInt(ammount)
         return
       }
 
@@ -45,12 +46,15 @@ export const cartSlice = createSlice({
     calculateTotal (state) {
       const total = state.products.reduce((prevValue, product) => prevValue + (product.ammount * product.price), 0)
       state.total = total.toFixed(2)
+    },
+    clearCart (state) {
+      state.products = []
     }
   }
 })
 
 export const selectCart = (state: RootState) => state.cart
 
-export const { addToCart, removeProductFromCart, calculateTotal } = cartSlice.actions
+export const { addToCart, removeProductFromCart, calculateTotal, clearCart } = cartSlice.actions
 
 export default cartSlice.reducer

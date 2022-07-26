@@ -19,7 +19,7 @@ export default function CartTable ({ products }: CartTableProps) {
 
   return (
     <>
-      <Table>
+      <Table data-testid='cart-table'>
         <thead>
           <tr>
             <th>Edit</th>
@@ -30,25 +30,33 @@ export default function CartTable ({ products }: CartTableProps) {
             <th>Subtotal</th>
           </tr>
         </thead>
-        <tbody>
+        <tbody data-testid='cart-table-body'>
           {
             products.map((product) => {
               return (
-                <tr key={product?.id}>
+                <tr key={product?.id} data-testid={`cart-table-row-${product?.id}`}>
                   <td>
-                    <Button onClick={() => removeItem(product)}>
+                    <Button onClick={() => removeItem(product)} className='cart-remove-button' data-testid={`cart-remove-button-${product.id}`}>
                       <i className="fas fa-remove fa-2x"></i>
                     </Button>
                   </td>
                   <td>
                     <img src={product.mainimage.url} alt={product?.name} />
                   </td>
-                  <td>{ product?.name }</td>
-                  <td>{ product.price }</td>
+                  <td className='cart-table-body--product-name'>{ product?.name }</td>
+                  <td className='cart-table-body--product-price'>{ product.price }</td>
                   <td>
                     <AmmountInput product={product} />
                   </td>
-                  <td><b>$</b> { (product.price * product.ammount).toFixed(2) } <b>USD</b></td>
+                  <td>
+                    <span>
+                      <b>$</b>
+                      <span className='cart-table-body--product-subtotal'>
+                      { (product.price * product.ammount).toFixed(2) }
+                      </span>
+                      <b>USD</b>
+                    </span>
+                  </td>
                 </tr>
               )
             })
@@ -58,7 +66,7 @@ export default function CartTable ({ products }: CartTableProps) {
               <b>Cart total</b>
             </td>
             <td>
-              <b>$</b> { total } <b>USD</b>
+              <b>$</b> <span data-testid='cart-table-total'>{ total }</span> <b>USD</b>
             </td>
           </tr>
         </tbody>

@@ -1,16 +1,15 @@
 import React, { useState } from 'react'
 import { Swiper, SwiperSlide } from 'swiper/react'
 import SwiperCore, {
-  FreeMode, Navigation, Thumbs
-} from 'swiper'
+  Navigation, Thumbs
+} from 'swiper/core'
 import { array } from 'prop-types'
 
-import 'swiper/css/thumbs'
-import 'swiper/css'
-import 'swiper/css/navigation'
+import 'swiper/swiper.scss'
+import 'swiper/components/navigation/navigation.scss'
 import './styles.css'
 
-SwiperCore.use([FreeMode, Navigation, Thumbs])
+SwiperCore.use([Navigation, Thumbs])
 
 export default function Gallery ({ images = [] }) {
   const [thumbSwiper, setThumbSwiper] = useState(null)
@@ -18,9 +17,9 @@ export default function Gallery ({ images = [] }) {
   return (
     <Swiper
       loop={true}
-      spaceBetween={10}
-      navigation={true}
+      navigation
       thumbs={{ swiper: thumbSwiper }}
+      slidesPerView={1}
       className="mySwiper2"
     >
       <SwiperSlide>

@@ -9,7 +9,7 @@ export default function Cart () {
   const { products } = useSelector(selectCart)
 
   return (
-    <div>
+    <div data-testid='cart-page'>
       <h1>Shopping Cart</h1>
 
       <CartTable products={products} />

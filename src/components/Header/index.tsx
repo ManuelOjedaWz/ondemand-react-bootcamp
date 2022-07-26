@@ -59,7 +59,7 @@ export default function Header () {
             <i className="fas fa-search"></i>
           </Button>
           <div>
-            <Link to='/cart'>
+            <Link to='/cart' data-testid='cart-icon-button'>
               <i className="fa-solid fa-cart-shopping"></i>
             </Link>
             <AmmountSpan>

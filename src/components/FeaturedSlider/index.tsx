@@ -21,7 +21,7 @@ export default function FeaturedSlider () {
   }
 
   return (
-    <div className='home--slider'>
+    <div className='home--slider' data-testid="featured-slider">
       <div>
         {
           data.results.map((banner: IBanner, bannerIndex: number) => {

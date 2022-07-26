@@ -9,7 +9,11 @@ function useAddToCart (product: Product|null) {
 
   const onHandleChange = (e: React.ChangeEvent) => {
     const { value } = (e.target as HTMLInputElement)
-    setNumber(parseInt(value, 10))
+    let ammount = value
+    if (parseInt(value) > parseInt(product?.data.stock)) {
+      ammount = product?.data.stock
+    }
+    setNumber(parseInt(ammount, 10))
   }
 
   const handleAddToCart = () => {

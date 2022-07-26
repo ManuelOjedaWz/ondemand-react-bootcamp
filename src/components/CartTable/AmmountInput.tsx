@@ -21,7 +21,11 @@ export default function AmmountInput ({ product }: AmmountInputProps) {
   }, [ammount])
 
   const handleChange = (e: any) => {
-    setAmmount(e.target.value)
+    let ammount = e.target.value
+    if (parseInt(e.target.value) > product.stock) {
+      ammount = product.stock
+    }
+    setAmmount(ammount)
   }
 
   return (

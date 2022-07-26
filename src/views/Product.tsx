@@ -64,7 +64,14 @@ export default function Product () {
           </ul>
 
           <div className="product--input">
-            <Input type="number" onChange={onHandleChange} value={number} min={0} max={data?.results[0].data.stock} data-testid="product-add-to-cart-input" />
+            <Input
+              type="number"
+              onChange={onHandleChange}
+              value={number}
+              min={0}
+              max={data?.results[0].data.stock}
+              data-testid="product-add-to-cart-input"
+            />
             <Button
               disabled={data?.results[0].data.stock === 0}
               onClick={handleAddToCart}
